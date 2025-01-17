@@ -1,3 +1,4 @@
+import Features from "@/components/Home/Features";
 import Hero from "@/components/Home/Hero";
 import Layout from "@/components/Layouts/Layout";
 import { Metadata } from "next";
@@ -12,6 +13,10 @@ export default function Home(): JSX.Element {
     <>
       <Layout>
         <Hero/>
+        {/* <Collaborators /> */}
+        <Features />
+        {/* <Faq /> */}
+        {/* <Contact /> */}
       </Layout>
     </>
   );

@@ -18,6 +18,9 @@ const config: Config = {
     },
     fontFamily: {
       satoshi: ["Satoshi", "sans-serif"],
+      inter: ["Inter", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
+      sans: ["Inter", "sans-serif"],
     },
     screens: {
       "2xsm": "375px",
@@ -34,7 +37,7 @@ const config: Config = {
         stroke: "#E6EBF1",
         "stroke-dark": "#27303E",
         dark: {
-          DEFAULT: "#111928",
+          DEFAULT: "#18181b",
           2: "#1F2A37",
           3: "#374151",
           4: "#4B5563",

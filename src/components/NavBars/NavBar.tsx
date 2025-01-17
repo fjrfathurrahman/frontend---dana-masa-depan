@@ -8,7 +8,7 @@ import Image from "next/image";
 const MenuItem = [
   {
     name: "Home",
-    hash: "#home",
+    hash: "#",
   },
   {
     name: "Tentang",
@@ -29,33 +29,34 @@ const NavBar: React.FC = () => {
 
   useEffect(() => {
     const updateHash = () => {
-      setActiveHash(window.location.hash || "#home");
+      setActiveHash(window.location.hash || "#");
     };
 
     // Perbarui hash saat berubah
     window.addEventListener("hashchange", updateHash);
-    updateHash(); // Set awal
+    updateHash();
 
     return () => {
       window.removeEventListener("hashchange", updateHash);
     };
   }, []);
   return (
-    <nav className="sticky top-0 z-999 flex w-full">
-      <div className="container flex items-center justify-between border-b  border-stroke py-3 dark:border-stroke-dark">
-        <span>
+    <nav className="sticky top-0 z-999 flex w-full backdrop-blur">
+      <div className="container flex items-center justify-between border-b  border-stroke py-3.5 dark:border-stroke-dark">
+        <div className="flex items-center gap-2 sm:gap-4">
           <Image
             src={Logo.src}
             alt="Logo"
-            width={65}
-            height={65}
+            width={60}
+            height={60}
             quality={100}
             blurDataURL={Logo.blurDataURL}
-          />
-        </span>
-        <div className="hidden items-center gap-6 2xsm:flex">
+            />
+            <span className="font-bold text-xl tracking-wide text-dark dark:text-white">Dana Masa Depan</span>
+        </div>
+        <div className="hidden items-center gap-6 md:flex">
           {MenuItem.map((item) => (
-            <a key={item.name} href={item.hash} className={`text-dark dark:text-white font-semibold px-3.5 py-1.5 rounded-xl duration-700 ease-in-out ${activeHash === item.hash ? "bg-primary text-white" : ""}`}>
+            <a key={item.name} href={item.hash} className={`text-dark dark:text-white font-semibold px-3.5 py-1.5 rounded-xl duration-700 ease-in-out ${activeHash === item.hash ? "bg-primary/25 text-primary" : ""}`}>
               {item.name}
             </a>
           ))}
