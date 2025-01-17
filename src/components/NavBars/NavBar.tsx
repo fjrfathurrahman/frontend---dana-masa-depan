@@ -11,8 +11,8 @@ const MenuItem = [
     hash: "#",
   },
   {
-    name: "Tentang",
-    hash: "#about",
+    name: "Keunggulan",
+    hash: "#features",
   },
   {
     name: "Faq",
