@@ -1,7 +1,8 @@
 import { axiosInstance } from "@/lib/axios";
 import { TLogin } from "@/lib/Schema";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
 
 /**
@@ -25,7 +26,22 @@ function useLoginAdmin() {
   });
 }
 
+/**
+ * * function untuk melakukan get admin dengan id atau tanpa id
+ *
+ * @param {string} [id] - id admin yang ingin diambil
+ * @returns {UseMutationResult}
+ */
+function useGetAdmin(id?: string) {
+  const url = `admins/${id || ''}`;
 
-export {
-  useLoginAdmin
+  return useQuery({
+    queryKey: ['admin', id], // Key unik untuk caching
+    queryFn: async () => axiosInstance.get(url),
+    onError: () => {
+      toast.error('Terjadi kesalahan');
+    },
+  });
 }
+
+export { useLoginAdmin, useGetAdmin };
