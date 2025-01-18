@@ -6,11 +6,11 @@
 
 @layer base {
   * {
-    @apply scroll-smooth *:border-zinc-400 dark:*:border-zinc-600 font-medium;
+    @apply scroll-smooth *:border-zinc-400 dark:*:border-zinc-600 *:font-medium;
   }
 
   body {
-    @apply relative z-1 bg-zinc-100 font-satoshi text-base font-normal text-dark-5 dark:bg-[#020D1A] dark:text-dark-6;
+    @apply relative z-1 bg-zinc-100 text-base font-normal text-dark-5 dark:bg-[#020D1A] dark:text-dark-6;
   }
 }
 

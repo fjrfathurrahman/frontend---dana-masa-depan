@@ -85,11 +85,7 @@ const menuGroups = [
           </svg>
         ),
         label: "Admin",
-        route: "#",
-        children: [
-          { label: "Admin List", route: "/dashboard/admin" },
-          { label: "Nambah Admin", route: "/dashboard/admin/add" },
-        ]
+        route: "/dashboard/admin",
       },
       {
         icon: (

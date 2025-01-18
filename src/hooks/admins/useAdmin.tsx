@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/lib/axios";
-import { TLogin } from "@/lib/Schema";
-import axios from "axios";
+import { TAddAdmin, TLogin } from "@/lib/Schema";
+import { useDisclosure } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
@@ -36,7 +36,7 @@ function useGetAdmin(id?: string) {
   const url = `admins/${id || ''}`;
 
   return useQuery({
-    queryKey: ['admin', id], // Key unik untuk caching
+    queryKey: ['admins', id],
     queryFn: async () => axiosInstance.get(url),
     onError: () => {
       toast.error('Terjadi kesalahan');
@@ -44,4 +44,24 @@ function useGetAdmin(id?: string) {
   });
 }
 
-export { useLoginAdmin, useGetAdmin };
+
+function useAddAdmin() {
+  const { onClose } = useDisclosure();
+
+  return useMutation({
+    mutationFn: async (data: FormData) => axiosInstance.post("/admins", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }),
+    onSuccess: (data) => {
+      onClose()
+      toast.success("Action berhasil!");
+    },
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    },
+  })
+}
+
+export { useLoginAdmin, useGetAdmin, useAddAdmin };

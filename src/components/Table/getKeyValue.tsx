@@ -1,6 +1,5 @@
-import { Chip } from "@heroui/react";
+import { Chip, Image } from "@heroui/react";
 import { MdDelete, MdModeEdit } from "react-icons/md";
-import Image from "next/image";
 
 export default function GetKeyValue( item: any, columnKey: string, index: number ) {
   switch (columnKey) {
@@ -11,17 +10,15 @@ export default function GetKeyValue( item: any, columnKey: string, index: number
       return (
         <div className="min-w-full flex justify-center items-center">
           <Image
-            src={ `http://localhost:8000/storage/${item?.photo}` || "/images/user/user-03.png"}
+            src={`http://localhost:8000/storage/${item?.photo}` || "/images/user/user-03.png"}
             alt="image"
-            className="rounded-full"
-            width={100}
-            height={100}
+            className="rounded-full h-16 w-16"
           />
         </div>
       );
     
     case "role": 
-    return <Chip color={item[columnKey] === "Super Admin" ? "danger" : "success"} aria-label={item[columnKey]}>{item.role}</Chip>
+    return <Chip color={item[columnKey] === "Super Admin" ? "danger" : "success"} aria-label={item[columnKey]} variant="flat">{item.role}</Chip>
 
     case "actions":
       return (
@@ -36,7 +33,7 @@ export default function GetKeyValue( item: any, columnKey: string, index: number
       );
     default:
       return (
-        <div className="max-w-44 sm:min-w-full overflow-hidden text-ellipsis whitespace-nowrap" title={item[columnKey]}>
+        <div className="max-w-44 sm:min-w-full overflow-hidden text-ellipsis whitespace-nowrap text-medium font-medium" title={item[columnKey]}>
           {(item[columnKey] as React.ReactNode) ?? "-"}
         </div>
       );
