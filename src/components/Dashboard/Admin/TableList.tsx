@@ -1,8 +1,8 @@
 "use client";
 
-import { IAdmin } from "@/components/ProfileBox";
-import { useGetAdmin } from "@/hooks/admins/useAdmin";
 import TableData from "@/components/Table";
+import { useGetAdmin } from "@/hooks/admins/useAdmin";
+import { IAdmin } from "@/types/ress";
 
 
 const TableList = () => {

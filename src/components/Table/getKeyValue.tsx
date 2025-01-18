@@ -1,7 +1,7 @@
-import { Chip, Image } from "@heroui/react";
-import { MdDelete, MdModeEdit } from "react-icons/md";
+import { icons } from "@/resource/icons";
+import { Button, Chip, Image } from "@heroui/react";
 
-export default function GetKeyValue( item: any, columnKey: string, index: number ) {
+export default function GetKeyValue(item: any, columnKey: string, index: number, handleDelete?: () => void) {
   switch (columnKey) {
     case "id":
       return index + 1;
@@ -12,7 +12,7 @@ export default function GetKeyValue( item: any, columnKey: string, index: number
           <Image
             src={`http://localhost:8000/storage/${item?.photo}` || "/images/user/user-03.png"}
             alt="image"
-            className="rounded-full h-16 w-16"
+            className="rounded-full h-16 w-16 object-cover"
           />
         </div>
       );
@@ -23,12 +23,12 @@ export default function GetKeyValue( item: any, columnKey: string, index: number
     case "actions":
       return (
         <div className="flex items-center justify-center gap-2">
-          <button>
-            <MdModeEdit size={22} />
-          </button>
-          <button>
-            <MdDelete size={22} />
-          </button>
+          <Button isIconOnly color="warning" className="text-white">
+            {icons.edit}
+          </Button>
+          <Button isIconOnly color="danger" onPress={handleDelete}>
+            {icons.delete}
+          </Button>
         </div>
       );
     default:

@@ -3,16 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useGetAdmin } from "@/hooks/admins/useAdmin";
-import { Chip } from "@heroui/react";
-
-export interface IAdmin {
-  name: string;
-  email: string;
-  role: string;
-  photo: string;
-  created_at: string;
-  updated_at: string;
-}
+import { IAdmin } from "@/types/ress";
 
 const ProfileBox = () => {
   const { data } = useGetAdmin('1');

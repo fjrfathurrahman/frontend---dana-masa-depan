@@ -146,7 +146,7 @@ const ModalAdd = () => {
                     type="button"
                     onPress={onClose}
                   >
-                    Close
+                    Kembali
                   </Button>
                   <Button
                     color="primary"

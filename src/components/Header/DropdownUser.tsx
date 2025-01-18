@@ -1,10 +1,15 @@
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
+import { useState } from "react";
+import { useGetAdmin } from "@/hooks/admins/useAdmin";
+import { IAdmin } from "@/types/ress";
 
 const DropdownUser = () => {
+  const { data } = useGetAdmin('1')
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const profile = data?.data.data as IAdmin
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -17,7 +22,7 @@ const DropdownUser = () => {
           <Image
             width={112}
             height={112}
-            src="/images/user/user-03.png"
+            src={`http://localhost:8000/storage/${profile?.photo}` || '/images/user/user-03.png'}
             style={{
               width: "auto",
               height: "auto",
@@ -28,7 +33,9 @@ const DropdownUser = () => {
         </span>
 
         <span className="flex items-center gap-2 font-medium text-dark dark:text-dark-6">
-          <span className="hidden lg:block">Jhon Smith</span>
+          <span className="hidden lg:block">
+            {profile?.name ?? 'User'}
+          </span>
 
           <svg
             className={`fill-current duration-200 ease-in ${dropdownOpen && "rotate-180"}`}
@@ -58,7 +65,7 @@ const DropdownUser = () => {
               <Image
                 width={112}
                 height={112}
-                src="/images/user/user-03.png"
+                src={`http://localhost:8000/storage/${profile?.photo}` || '/images/user/user-03.png'}
                 style={{
                   width: "auto",
                   height: "auto",
@@ -72,10 +79,10 @@ const DropdownUser = () => {
 
             <span className="block">
               <span className="block font-medium text-dark dark:text-white">
-                Jhon Smith
+                {profile?.name ?? 'User'}
               </span>
               <span className="block font-medium text-dark-5 dark:text-dark-6">
-                jonson@nextadmin.com
+                {profile?.email ?? 'user@example.com'}
               </span>
             </span>
           </div>
