@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "This is Next.js Home page for NextAdmin Dashboard Kit",
 };
 
-export default function Dashboard() {
+export default function Dashboard(): JSX.Element {
   return (
     <>
       <DefaultLayout>

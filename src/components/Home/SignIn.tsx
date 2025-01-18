@@ -1,5 +1,5 @@
 import Image from "next/image";
-import FormSignIn from "../Auth/FormSignIn";
+import FormSignIn from "../Forms/FormSignIn";
 import image from "/public/images/content/home.png";
 
 const SignIn: React.FC = () => {
