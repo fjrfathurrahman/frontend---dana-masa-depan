@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply scroll-smooth *:border-zinc-400 dark:*:border-zinc-600;
+    @apply scroll-smooth *:border-zinc-400 dark:*:border-zinc-600 font-medium;
   }
 
   body {

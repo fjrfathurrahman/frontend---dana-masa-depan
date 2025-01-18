@@ -12,7 +12,7 @@ const Features = () => {
         }
       />
 
-      <div className="grid grid-cols-1 gap-y-6 gap-x-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-y-6 gap-x-4 md:grid-cols-2 lg:grid-cols-3">
         {[1, 2, 3, 4, 5, 6].map((item, index) => (
           <CardFeature
             key={index}

@@ -19,6 +19,10 @@ const MenuItem = [
     hash: "#faq",
   },
   {
+    name: "Sign In",
+    hash: "#signIn",
+  },
+  {
     name: "Contact",
     hash: "#contact",
   },
@@ -47,14 +51,14 @@ const NavBar: React.FC = () => {
           <Image
             src={Logo.src}
             alt="Logo"
-            width={60}
-            height={60}
+            width={55}
+            height={55}
             quality={100}
             blurDataURL={Logo.blurDataURL}
             />
-            <span className="font-bold text-xl tracking-wide text-dark dark:text-white">Dana Masa Depan</span>
+            <span className="font-bold text-xl tracking-wide text-dark dark:text-white hidden sm:block md:hidden lg:block">Dana Masa Depan</span>
         </div>
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
           {MenuItem.map((item) => (
             <a key={item.name} href={item.hash} className={`text-dark dark:text-white font-semibold px-3.5 py-1.5 rounded-xl duration-700 ease-in-out ${activeHash === item.hash ? "bg-primary/25 text-primary" : ""}`}>
               {item.name}

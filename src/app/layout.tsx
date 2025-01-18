@@ -6,8 +6,12 @@ import "@/css/satoshi.css";
 import "@/css/style.css";
 import { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
+import { HeroUIProvider } from "@heroui/react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-export default function RootLayout({ children}: Readonly<{children: React.ReactNode}>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -20,7 +24,9 @@ export default function RootLayout({ children}: Readonly<{children: React.ReactN
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        {loading ? <Loader /> : children}
+        <QueryClientProvider client={new QueryClient()}>
+          <HeroUIProvider>{loading ? <Loader /> : children}</HeroUIProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
