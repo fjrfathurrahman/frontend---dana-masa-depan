@@ -33,10 +33,13 @@ export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
     case "actions":
       return (
         <div className="flex items-center justify-center gap-2">
-          <Button isIconOnly color="warning" className="text-white" type="button">
+          <Button isIconOnly variant="flat" color="primary" type="button">
+            {icons.eye}
+          </Button>
+          <Button isIconOnly variant="flat" color="warning" type="button">
             {icons.edit}
           </Button>
-          <Button isIconOnly color="danger" onPress={() => actions?.handleDelete(item.id)} type="button">
+          <Button isIconOnly variant="flat" color="danger" type="button" onPress={() => actions?.handleDelete(item.id)} >
             {icons.delete}
           </Button>
         </div>

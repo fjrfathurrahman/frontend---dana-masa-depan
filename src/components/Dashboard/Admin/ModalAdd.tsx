@@ -50,10 +50,7 @@ const ModalAdd = () => {
     formData.append("password", data.password);
     formData.append("role", data.role);
     formData.append("confirmPassword", data.confirmPassword);
-
-    if (data.photo && data.photo.length > 0) {
-      formData.append("photo", data.photo[0]);
-    }
+    if (data.photo) formData.append("photo", data.photo[0]);
 
     mutate(formData);
     onClose();
@@ -67,7 +64,7 @@ const ModalAdd = () => {
 
       <Modal
         isOpen={isOpen}
-        placement="top-center"
+        placement="center"
         onOpenChange={onOpenChange}
         size="2xl"
       >

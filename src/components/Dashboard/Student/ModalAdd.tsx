@@ -1,6 +1,6 @@
 "use client";
 
-import { useAddAdmin } from "@/hooks/admins/useAdmin";
+import { useAddStudent } from "@/hooks/students/useStudent";
 import { AddStudentSchema, TAddStudent } from "@/lib/Schema";
 import { icons } from "@/resource/icons";
 import {
@@ -26,8 +26,8 @@ const optionsSelect = {
     { key: "XII", label: "XII" },
   ],
   gender: [
-    { key: "male", label: "Laki-laki" },
-    { key: "female", label: "Perempuan" },
+    { key: "Laki-laki", label: "Laki-laki" },
+    { key: "Perempuan", label: "Perempuan" },
   ],
   major: [
     { key: "RPL", label: "Rekayasa Perangkat Lunak" },
@@ -38,14 +38,28 @@ const optionsSelect = {
 const ModalAdd = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
-  const { mutate, isLoading } = useAddAdmin();
+  const { mutate, isLoading } = useAddStudent();
   const methods = useForm<TAddStudent>({
     resolver: zodResolver(AddStudentSchema),
     mode: "onChange",
   });
 
   const onSubmit = (data: TAddStudent) => {
+    const formData = new FormData();
+    
+    formData.append("name", data.name);
+    formData.append("student_number", data.student_number);
+    formData.append("class", data.class);
+    formData.append("gender", data.gender);
+    formData.append("major", data.major);
+    formData.append("phone", data.phone);
+    formData.append("email", data.email);
+    formData.append("address", data.address);
+    if (data.photo) formData.append("photo", data.photo[0]);
+    
     console.log(data);
+    mutate(formData);
+    onClose();
   };
 
   return (
@@ -56,7 +70,7 @@ const ModalAdd = () => {
 
       <Modal
         isOpen={isOpen}
-        placement="top-center"
+        placement="center"
         onOpenChange={onOpenChange}
         size="2xl"
       >

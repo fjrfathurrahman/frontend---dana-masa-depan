@@ -6,7 +6,6 @@ import React from 'react'
 
 const TableStudent = () => {
   const { data } = useGetStudent();
-
   const students = data?.data?.data;
 
   return (
