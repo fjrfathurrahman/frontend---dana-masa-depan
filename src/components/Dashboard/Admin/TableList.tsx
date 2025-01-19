@@ -13,17 +13,24 @@ const TableList = () => {
   const admins = data?.data?.data as IAdmin[];
 
   const { mutate: Delete, status: statusDelete } = useDeleteAdmin();
-  const { isOpen, onOpenChange, onOpen } = useDisclosure();
+  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
 
-  const openDelete = (itemId: number) => { setSelectedItem(itemId); onOpen() };
+  const openDelete = (itemId: number) => {
+    setSelectedItem(itemId);
+    onOpen();
+  };
   const onDelete = () => {
-    if (selectedItem) return Delete(selectedItem); setSelectedItem(null);
+    if (selectedItem) {
+      Delete(selectedItem);
+      setSelectedItem(null);
+      return onClose();
+    }
   };
 
   return (
     <>
       <TableData
-        actions={{ handleDelete: openDelete}}
+        actions={{ handleDelete: openDelete }}
         data={admins}
         status={status}
         columns={[
@@ -36,7 +43,12 @@ const TableList = () => {
         ]}
       />
 
-      <ModalDelete open={isOpen} onOpenChange={onOpenChange} confirmDelete={onDelete} status={statusDelete}/>
+      <ModalDelete
+        open={isOpen}
+        onOpenChange={onOpenChange}
+        confirmDelete={onDelete}
+        status={statusDelete}
+      />
     </>
   );
 };

@@ -26,12 +26,19 @@ export const optionsRole = [
 ];
 
 const ModalAdd = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   const { mutate, isLoading } = useAddAdmin();
   const methods = useForm<TAddAdmin>({
     resolver: zodResolver(AddAdminSchema),
     mode: "onChange",
+    defaultValues: {
+      name: "test",
+      email: "test@example.com",
+      password: "password",
+      confirmPassword: "password",
+      role: "admin",
+    }
   });
 
   const onSubmit = (data: TAddAdmin) => {
@@ -49,6 +56,7 @@ const ModalAdd = () => {
     }
 
     mutate(formData);
+    onClose();
   };
 
   return (

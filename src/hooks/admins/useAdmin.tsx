@@ -63,7 +63,6 @@ function useGetAdmin(id?: string | number) {
  * @example
  */
 function useAddAdmin() {
-  const { onClose } = useDisclosure();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -72,9 +71,8 @@ function useAddAdmin() {
         "Content-Type": "multipart/form-data",
       },
     }),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admins'] });
-      onClose()
       toast.success("Action berhasil!");
     },
     onError: () => {
@@ -91,13 +89,12 @@ function useAddAdmin() {
  * @returns {UseMutationResult} - hasil mutasi untuk operasi penghapusan
  */
 function useDeleteAdmin() {
-  // const queryClient = useQueryClient();
-  const { onClose } = useDisclosure();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: number) => axiosInstance.delete(`/admins/${id}`),
     onSuccess: (data) => {
-      onClose();
+      queryClient.invalidateQueries({ queryKey: ['admins'] });
       toast.success("Action berhasil!");
     },
     onError: () => {

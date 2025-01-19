@@ -22,7 +22,13 @@ const ModalDelete = ({ open, confirmDelete }: TProps) => {
                 delectus fuga sequi recusandae ipsum architecto impedit
                 consequatur perferendis suscipit ex!
               </p>
-              <Button color="danger" className="mt-4" onPress={confirmDelete} type="button" isLoading={status === "loading"}>
+              <Button
+                color="danger"
+                className="mt-4"
+                onPress={confirmDelete}
+                type="button"
+                isLoading={status === "loading"}
+              >
                 Delete
               </Button>
             </ModalBody>

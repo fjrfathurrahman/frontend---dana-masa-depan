@@ -28,7 +28,7 @@ export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
       );
     
     case "role": 
-    return <Chip color={item[columnKey] === "Super Admin" ? "danger" : "success"} aria-label={item[columnKey]} variant="flat">{item.role}</Chip>
+    return <Chip color={item[columnKey] === "super admin" ? "danger" : "success"} aria-label={item[columnKey]} variant="flat">{item.role}</Chip>
 
     case "actions":
       return (
