@@ -32,7 +32,7 @@
   }
 
   .p {
-    @apply text-sm leading-normal sm:text-base md:text-lg lg:text-xl
+    @apply text-sm leading-normal sm:text-base md:text-lg lg:text-xl text-pretty
   }
 
   .btnSolid {

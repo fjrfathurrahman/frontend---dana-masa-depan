@@ -1,7 +1,17 @@
 import { icons } from "@/resource/icons";
 import { Button, Chip, Image } from "@heroui/react";
 
-export default function GetKeyValue(item: any, columnKey: string, index: number, handleDelete?: () => void) {
+type TProps = {
+  item: any
+  columnKey: string;
+  index: number;
+  actions?: {
+    handleDelete: (id: number) => void
+    // handleEdit: () => void
+  }
+}
+
+export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
   switch (columnKey) {
     case "id":
       return index + 1;
@@ -23,10 +33,10 @@ export default function GetKeyValue(item: any, columnKey: string, index: number,
     case "actions":
       return (
         <div className="flex items-center justify-center gap-2">
-          <Button isIconOnly color="warning" className="text-white">
+          <Button isIconOnly color="warning" className="text-white" type="button">
             {icons.edit}
           </Button>
-          <Button isIconOnly color="danger" onPress={handleDelete}>
+          <Button isIconOnly color="danger" onPress={() => actions?.handleDelete(item.id)} type="button">
             {icons.delete}
           </Button>
         </div>

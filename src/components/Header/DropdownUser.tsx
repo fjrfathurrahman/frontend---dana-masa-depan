@@ -1,15 +1,28 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetAdmin } from "@/hooks/admins/useAdmin";
 import { IAdmin } from "@/types/ress";
 
 const DropdownUser = () => {
-  const { data } = useGetAdmin('1')
+  const [user, setUser] = useState<number | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const profile = data?.data.data as IAdmin
+  // Fetch admin data based on user ID
+  const { data } = useGetAdmin(user?.toString());
+  const profile = data?.data.data as IAdmin | undefined;
+
+  // Load user ID from localStorage
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser.id);
+    }
+  }, []);
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -57,11 +70,9 @@ const DropdownUser = () => {
 
       {/* <!-- Dropdown Star --> */}
       {dropdownOpen && (
-        <div
-          className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark`}
-        >
+        <div className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark`}>
           <div className="flex items-center gap-2.5 px-5 pb-5.5 pt-3.5">
-            <span className="relative block h-12 w-12 rounded-full">
+            <span className="h-12 w-12 rounded-full">
               <Image
                 width={112}
                 height={112}
@@ -74,7 +85,6 @@ const DropdownUser = () => {
                 className="overflow-hidden rounded-full"
               />
 
-              <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green dark:border-gray-dark"></span>
             </span>
 
             <span className="block">

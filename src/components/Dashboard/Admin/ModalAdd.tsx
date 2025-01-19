@@ -2,6 +2,7 @@
 
 import { useAddAdmin } from "@/hooks/admins/useAdmin";
 import { AddAdminSchema, TAddAdmin } from "@/lib/Schema";
+import { icons } from "@/resource/icons";
 import {
   Modal,
   ModalContent,
@@ -53,7 +54,7 @@ const ModalAdd = () => {
   return (
     <>
       <Button color="primary" onPress={onOpen}>
-        Tambah Admin
+        {icons.plus} Tambah Admin
       </Button>
 
       <Modal

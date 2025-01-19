@@ -14,9 +14,13 @@ interface ITable {
   data: any;
   status: string;
   columns: { key: string; label: string }[];
+  actions?: {
+    handleDelete:  (id: number) => void;
+    // handleEdit: () => void;
+  }
 }
 
-const TableData: React.FC<ITable> = ({ data, status, columns }) => {
+const TableData: React.FC<ITable> = ({ data, status, columns, actions }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 5;
 
@@ -43,9 +47,9 @@ const TableData: React.FC<ITable> = ({ data, status, columns }) => {
         >
           {paginatedData?.map((item: any, index: number) => (
             <TableRow key={item.id} className="overflow-x-auto">
-              {(columnKey) => (
-                <TableCell key={columnKey} className={"w-auto text-ellipsis text-wrap py-2"}>
-                  {GetKeyValue(item, columnKey as string, index)}
+              {(key) => (
+                <TableCell key={key} className={"w-auto text-ellipsis text-wrap py-2"}>
+                  {<GetKeyValue columnKey={key as string} index= {index} item={item} actions={actions} />}
                 </TableCell>
               )}
             </TableRow>

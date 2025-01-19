@@ -31,7 +31,7 @@ const FormSignIn = () => {
     <div className="flex h-full w-full items-center justify-center">
       <div className="rounded-large flex w-full max-w-xl flex-col gap-4 px-8 pb-10 pt-6">
         <div>
-          <h2 className="h3">Sign In Admin</h2>
+          <h2 className="h3 mb-2">Sign In Admin</h2>
           <p className="p">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>

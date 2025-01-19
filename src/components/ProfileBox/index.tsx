@@ -1,13 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useGetAdmin } from "@/hooks/admins/useAdmin";
 import { IAdmin } from "@/types/ress";
 
 const ProfileBox = () => {
-  const { data } = useGetAdmin('1');
-  const profile = data?.data?.data as IAdmin;
+  const [user, setUser] = useState<number | null>(null);
+
+  // Fetch admin data based on user ID
+  const { data } = useGetAdmin(user?.toString());
+  const profile = data?.data.data as IAdmin | undefined;
+
+  // Load user ID from localStorage
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser.id);
+    }
+  }, []);
 
   return (
     <>
@@ -29,14 +41,16 @@ const ProfileBox = () => {
           <div className="relative z-30 mx-auto -mt-22 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-[176px] sm:p-3">
             <div className="relative drop-shadow-2">
               <Image
-                src={`http://localhost:8000/storage/${profile?.photo}` || '/images/user/user-03.png'}
+                src={
+                  `http://localhost:8000/storage/${profile?.photo}` ||
+                  "/images/user/user-03.png"
+                }
                 width={160}
                 height={160}
                 className="rounded-full"
                 alt="profile"
               />
             </div>
-
           </div>
 
           <div className="mt-4 *:first-letter:capitalize">
@@ -44,7 +58,7 @@ const ProfileBox = () => {
               {profile?.name ?? "User"}
             </h3>
             {/* <Chip color={profile?.role === "super admin" ? "danger" : "success"} className="font-semibold capitalize">{profile?.role ?? "Admin"}</Chip> */}
-{/* 
+            {/* 
             <div className="mx-auto max-w-[720px]">
               <h4 className="font-medium text-dark dark:text-white">
                 About Me
@@ -57,8 +71,6 @@ const ProfileBox = () => {
                 pharetra ligula sed, aliquam lacus.
               </p>
             </div> */}
-
-            
           </div>
         </div>
       </div>
