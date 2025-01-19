@@ -89,7 +89,7 @@ const menuGroups = [
             />
           </svg>
         ),
-        label: "Students",
+        label: "Siswa",
         route: "/dashboard/student",
       },
       {

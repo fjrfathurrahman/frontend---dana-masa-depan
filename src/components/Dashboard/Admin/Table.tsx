@@ -7,7 +7,7 @@ import { IAdmin } from "@/types/ress";
 import { useDisclosure } from "@heroui/react";
 import { useState } from "react";
 
-const TableList = () => {
+const TableAdmin = () => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
   const { data, status } = useGetAdmin();
   const admins = data?.data?.data as IAdmin[];
@@ -53,4 +53,4 @@ const TableList = () => {
   );
 };
 
-export default TableList;
+export default TableAdmin;

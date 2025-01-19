@@ -72,7 +72,7 @@ function useAddAdmin() {
       },
     }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admins'] });
+      queryClient.invalidateQueries({ queryKey: ['admins'], refetchActive: true });
       toast.success("Action berhasil!");
     },
     onError: () => {
@@ -94,7 +94,7 @@ function useDeleteAdmin() {
   return useMutation({
     mutationFn: async (id: number) => axiosInstance.delete(`/admins/${id}`),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['admins'] });
+      queryClient.invalidateQueries({ queryKey: ['admins'], refetchActive: true });
       toast.success("Action berhasil!");
     },
     onError: () => {
