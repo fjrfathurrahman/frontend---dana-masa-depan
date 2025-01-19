@@ -20,6 +20,7 @@ const TableStudent = () => {
           { key: "photo", label: "Photo" },
           { key: "student_number", label: "NISN" },
           { key: "name", label: "Name" },
+          { key: "gender", label: "Jenis Kelamin" },
           { key: "email", label: "Email" },
           { key: "class", label: "Class" },
           { key: "major", label: "Major" },

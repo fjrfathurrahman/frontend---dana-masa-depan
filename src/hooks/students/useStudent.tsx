@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "sonner";
 
 /**
@@ -20,6 +20,31 @@ function useGetStudent(id?: string | number) {
   });
 }
 
+/**
+ * * A custom hook to add a new student.
+ *
+ * @returns {UseMutationResult} - The result of the mutation, including status and functions
+ */
+function useAddStudent() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data: FormData) => axiosInstance.post("/students", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['students'], refetchActive: true });
+      toast.success("Action berhasil!");
+    },
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    },
+  })
+}
+
 export {
-  useGetStudent
+  useGetStudent,
+  useAddStudent
 }
