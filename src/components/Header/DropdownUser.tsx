@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -32,23 +32,23 @@ const DropdownUser = () => {
         href="#"
       >
         <span className="h-12 w-12 rounded-full">
-          <Image
-            width={112}
-            height={112}
-            src={`http://localhost:8000/storage/${profile?.photo}` || '/images/user/user-03.png'}
-            style={{
-              width: "auto",
-              height: "auto",
-            }}
-            alt="User"
-            className="overflow-hidden rounded-full"
-          />
+          {profile?.photo && (
+            <Image
+              width={112}
+              height={112}
+              src={`http://localhost:8000/storage/${profile?.photo}`}
+              style={{
+                width: "auto",
+                height: "auto",
+              }}
+              alt="User"
+              className="overflow-hidden rounded-full"
+            />
+          )}
         </span>
 
         <span className="flex items-center gap-2 font-medium text-dark dark:text-dark-6">
-          <span className="hidden lg:block">
-            {profile?.name ?? 'User'}
-          </span>
+          <span className="hidden lg:block">{profile?.name ?? "User"}</span>
 
           <svg
             className={`fill-current duration-200 ease-in ${dropdownOpen && "rotate-180"}`}
@@ -70,29 +70,32 @@ const DropdownUser = () => {
 
       {/* <!-- Dropdown Star --> */}
       {dropdownOpen && (
-        <div className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark`}>
+        <div
+          className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark`}
+        >
           <div className="flex items-center gap-2.5 px-5 pb-5.5 pt-3.5">
             <span className="h-12 w-12 rounded-full">
-              <Image
-                width={112}
-                height={112}
-                src={`http://localhost:8000/storage/${profile?.photo}` || '/images/user/user-03.png'}
-                style={{
-                  width: "auto",
-                  height: "auto",
-                }}
-                alt="User"
-                className="overflow-hidden rounded-full"
-              />
-
+              {profile?.photo && (
+                <Image
+                  width={112}
+                  height={112}
+                  src={`http://localhost:8000/storage/${profile?.photo}`}
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                  }}
+                  alt="User"
+                  className="overflow-hidden rounded-full"
+                />
+              )}
             </span>
 
             <span className="block">
               <span className="block font-medium text-dark dark:text-white">
-                {profile?.name ?? 'User'}
+                {profile?.name ?? "User"}
               </span>
               <span className="block font-medium text-dark-5 dark:text-dark-6">
-                {profile?.email ?? 'user@example.com'}
+                {profile?.email ?? "user@example.com"}
               </span>
             </span>
           </div>

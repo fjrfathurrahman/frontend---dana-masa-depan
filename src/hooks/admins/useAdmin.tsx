@@ -48,6 +48,7 @@ function useGetAdmin(id?: string | number) {
 
   return useQuery({
     queryKey: ['admins', id],
+    refetchInterval: 5000,
     queryFn: async () => axiosInstance.get(url),
     onError: () => {
       toast.error('Terjadi kesalahan');
@@ -97,7 +98,8 @@ function useDeleteAdmin() {
       queryClient.invalidateQueries({ queryKey: ['admins'], refetchActive: true });
       toast.success("Action berhasil!");
     },
-    onError: () => {
+    onError: (context: { previousAdmins: any }) => {
+      queryClient.setQueryData(['admins'], context.previousAdmins);
       toast.error("Terjadi kesalahan");
     },
   });
