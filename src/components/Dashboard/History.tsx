@@ -8,6 +8,13 @@ const History = () => {
   const { data } = useTransactions();
   const history = data?.data?.data;
 
+  // Sort the history array in descending order
+  const sortedHistory = history?.slice().sort((a: any, b: any) => {
+    const dateA = new Date(a.created_at).getTime();
+    const dateB = new Date(b.created_at).getTime();
+    return dateB - dateA; 
+  });
+
   return (
     <Card className="col-span-12 rounded-[10px] bg-white px-7.5 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">
       <CardHeader>
@@ -15,7 +22,7 @@ const History = () => {
       </CardHeader>
 
       <CardBody className="flex flex-col gap-4" >
-        {history?.length > 0 ? history?.slice(0, 4).map((item: any) => (
+        {sortedHistory?.length > 0 ? sortedHistory?.slice(0, 4).map((item: any) => (
           <CardHistory key={item} {...item} />
         )) : <p>Tidak data ditemukan...</p>}
       </CardBody>

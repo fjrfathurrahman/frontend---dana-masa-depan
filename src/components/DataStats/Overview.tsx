@@ -5,6 +5,7 @@ import { useGetOverview } from "@/hooks/useGetOverview";
 import { IInfo } from "@/types/ress";
 import { Card, CardBody, CardHeader } from "@heroui/react";
 import { HiOutlineUserGroup, HiOutlineUser } from "react-icons/hi2";
+import { formatedCurrency } from "@/utils/formated";
 
 const dataStatsList = [
   {
@@ -155,7 +156,7 @@ const Overview: React.FC<dataStats> = () => {
           <CardBody>
             <div>
               <h4 className="h3">
-                {info?.total_balance ? info.total_balance.toLocaleString("id-ID", {minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0,00"}
+                {info?.total_balance ? formatedCurrency(info.total_balance) : "0,00"}
               </h4>
               <span className="text-body-sm font-medium">
                 Jumlah Seluruh Siswa Menabung
@@ -173,7 +174,7 @@ const Overview: React.FC<dataStats> = () => {
           <CardBody>
             <div>
               <h4 className="h3">
-                {info?.total_deposit ? info.total_deposit.toLocaleString("id-ID", {minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0,00"}
+                {info?.total_deposit ? formatedCurrency(info.total_deposit) : "0,00"}
               </h4>
               <span className="text-body-sm font-medium">
                 Jumlah Seluruh Deposit
@@ -191,7 +192,7 @@ const Overview: React.FC<dataStats> = () => {
           <CardBody>
             <div>
               <h4 className="h3">
-                {info?.total_withdrawal ? info.total_withdrawal.toLocaleString("id-ID", {minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0,00"}
+                {info?.total_withdrawal ? formatedCurrency(info.total_withdrawal) : "0,00"}
               </h4>
               <span className="text-body-sm font-medium">
                 Jumlah Seluruh Withdraw
