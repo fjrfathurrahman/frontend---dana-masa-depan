@@ -3,7 +3,7 @@
 // import ChartTwo from "../Charts/ChartTwo";
 import ChatCard from "../Chat/ChatCard";
 import TableOne from "../Tables/TableOne";
-import History from "./History";
+import History from "./Transaction/History";
 import ChartOne from "@/components/Charts/ChartOne";
 import Overview from "@/components/DataStats/Overview";
 

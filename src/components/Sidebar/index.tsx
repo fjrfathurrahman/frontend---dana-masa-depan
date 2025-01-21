@@ -35,7 +35,7 @@ const menuGroups = [
       {
         icon: icons.transaction,
         label: "Transaksi",
-        route: "/dashboard/profile",
+        route: "/dashboard/transaction",
       },
       {
         icon: icons.profile,

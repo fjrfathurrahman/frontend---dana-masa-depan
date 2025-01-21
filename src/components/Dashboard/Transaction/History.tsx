@@ -1,11 +1,11 @@
 "use client";
 
-import { useTransactions } from "@/hooks/transactions/useTransactions";
+import { useGetTransactions } from "@/hooks/transactions/useTransactions";
 import { Card, CardBody, CardHeader } from "@heroui/react";
-import CardHistory from "../Card/CardHistory";
+import CardHistory from "../../Card/CardHistory";
 
 const History = () => {
-  const { data } = useTransactions();
+  const { data } = useGetTransactions();
   const history = data?.data?.data;
 
   // Sort the history array in descending order

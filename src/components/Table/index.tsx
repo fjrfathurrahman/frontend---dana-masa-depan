@@ -53,11 +53,7 @@ const TableData: React.FC<ITable> = ({ data, status, columns, actions }) => {
         <TableBody
           items={paginatedData}
           emptyContent={
-            status === "error"
-              ? "Terjadi kesalahan pada server"
-              : status === "loading"
-                ? "Loading..."
-                : "Data tidak ditemukan"
+            status === "error" ? "Terjadi kesalahan pada server" : status === "loading" ? "Loading..." : "Data tidak ditemukan"
           }
         >
           {paginatedData?.map((item: any, index: number) => (

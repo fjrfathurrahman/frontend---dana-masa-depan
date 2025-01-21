@@ -1,4 +1,5 @@
 import { icons } from "@/resource/icons";
+import { formatedCurrency } from "@/utils/formated";
 import { Button, Chip, Image } from "@heroui/react";
 
 type TProps = {
@@ -12,6 +13,11 @@ type TProps = {
 }
 
 export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
+
+  const getNestedValue = (obj: any, key: string) => {
+    return key.split('.').reduce((acc, part) => acc?.[part], obj) ?? "-";
+  };
+
   switch (columnKey) {
     case "id":
       return index + 1;
@@ -26,9 +32,15 @@ export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
           />
         </div>
       );
+
+    case "amount":
+      return formatedCurrency(getNestedValue(item, columnKey));
     
     case "role": 
-    return <Chip color={item[columnKey] === "super admin" ? "danger" : "success"} aria-label={item[columnKey]} variant="flat">{item.role}</Chip>
+     return <Chip color={item[columnKey] === "super admin" ? "danger" : "success"} aria-label={item[columnKey]} variant="flat">{item.role}</Chip>
+    
+    case "type": 
+     return <Chip color={item[columnKey] === "withdrawal" ? "danger" : "success"} aria-label={item[columnKey]} variant="flat">{item.type}</Chip>
 
     case "actions":
       return (
@@ -47,7 +59,7 @@ export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
     default:
       return (
         <div className="max-w-44 sm:min-w-full overflow-hidden text-ellipsis whitespace-nowrap text-medium font-medium" title={item[columnKey]}>
-          {(item[columnKey] as React.ReactNode) ?? "-"}
+          {getNestedValue(item, columnKey)}
         </div>
       );
   }

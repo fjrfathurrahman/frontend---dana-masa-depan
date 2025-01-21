@@ -10,13 +10,15 @@ import { HeroUIProvider } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
+import { AppProgressBar } from "next-nprogress-bar";
+// import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
 
 const font = Poppins({
   subsets: ["latin"],
   display: "swap",
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-inter",
-})
+});
 
 export default function RootLayout({
   children,
@@ -32,10 +34,19 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={`${font.className} ${font.variable }`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${font.className} ${font.variable}`}
+      >
         <QueryClientProvider client={new QueryClient()}>
           <HeroUIProvider>
-            <Toaster  />
+            <Toaster />
+            <AppProgressBar
+              height="4px"
+              color="#00000"
+              options={{ showSpinner: false }}
+              shallowRouting
+            />
             {loading ? <Loader /> : children}
           </HeroUIProvider>
         </QueryClientProvider>
