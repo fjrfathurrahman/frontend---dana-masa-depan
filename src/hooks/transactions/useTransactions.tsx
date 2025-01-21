@@ -14,6 +14,8 @@ function useTransaction() {
         "Content-Type": "multipart/form-data",
       },
     }),
+    mutationKey: ['transactions'],
+    refetchInterval: 10000,
     onSuccess: () => {
       toast.success("Action berhasil!");
     },

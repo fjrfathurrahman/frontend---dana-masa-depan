@@ -14,6 +14,7 @@ function useGetStudent(id?: string | number) {
   return useQuery({
     queryKey: ['students', id],
     queryFn: async () => axiosInstance.get(url),
+    refetchInterval: 10000,
     onError: () => {
       toast.error('Terjadi kesalahan');
     },

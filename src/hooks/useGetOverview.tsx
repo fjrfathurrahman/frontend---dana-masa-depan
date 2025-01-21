@@ -11,7 +11,8 @@ export function useGetOverview() {
   return useQuery({
     queryKey: ["overview"],
     queryFn: async () => await axiosInstance.get("dashboard/summary"),
-    onSuccess: () => {},
+    refetchInterval: 10000,
+    // onSuccess: () => {},
     onError: () => {
       toast.error("Terjadi kesalahan");
     },

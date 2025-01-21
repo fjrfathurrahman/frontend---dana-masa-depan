@@ -11,8 +11,7 @@ export type TLogin = z.infer<typeof loginSchema>;
 
 
 
-export const AddAdminSchema = z
-  .object({
+export const AddAdminSchema = z.object({
     name: z
       .string()
       .min(3, { message: "Nama minimal 3 karakter" })
@@ -46,8 +45,6 @@ export const AddAdminSchema = z
 
 export type TAddAdmin = z.infer<typeof AddAdminSchema>;
 
-
-
 export const AddStudentSchema = z.object({
   name: z.string().min(3, { message: "Nama minimal 3 karakter" }).max(260, { message: "Nama maksimal 260 karakter" }),
   student_number: z.string().min(3, { message: "NISN minimal 3 karakter" }).max(11, { message: "NISN maksimal 11 karakter" }),
@@ -69,3 +66,15 @@ export const AddStudentSchema = z.object({
 })
 
 export type TAddStudent = z.infer<typeof AddStudentSchema>;
+
+export const TransactionSchema = z.object({
+  student_id: z.string().nonempty("Siswa harus dipilih."),
+  type: z.string(),
+  amount: z.preprocess((value) => {
+    const parsedValue = parseFloat(value as string);
+    return isNaN(parsedValue) ? null : parsedValue;
+  }, z.number().min(1, "Jumlah transaksi harus lebih dari 0")),
+});
+
+
+export type TTransactionSchema = z.infer<typeof TransactionSchema>;

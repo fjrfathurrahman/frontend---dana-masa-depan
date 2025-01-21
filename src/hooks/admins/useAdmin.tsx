@@ -48,7 +48,7 @@ function useGetAdmin(id?: string | number) {
 
   return useQuery({
     queryKey: ['admins', id],
-    refetchInterval: 5000,
+    // refetchInterval: 10000,
     queryFn: async () => axiosInstance.get(url),
     onError: () => {
       toast.error('Terjadi kesalahan');
