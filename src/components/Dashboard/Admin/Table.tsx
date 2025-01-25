@@ -36,6 +36,7 @@ const TableAdmin = () => {
         actions={{ handleDelete: openModalDelete, handleView: () => console.log("view") }}
         data={admins}
         status={status}
+        type="admin"
         columns={[
           { key: "id", label: "No" },
           { key: "photo", label: "Photo" },

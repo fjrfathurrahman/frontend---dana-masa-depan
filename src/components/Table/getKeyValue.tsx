@@ -1,11 +1,13 @@
 import { icons } from "@/resource/icons";
 import { formatedCurrency } from "@/utils/formated";
 import { Button, Chip, Image } from "@heroui/react";
+import Link from "next/link";
 
 type TProps = {
   item: any
   columnKey: string;
   index: number;
+  type: 'student' | 'transaction' | 'admin'
   actions?: {
     handleDelete: (id: number) => void
     handleView: () => void
@@ -13,7 +15,7 @@ type TProps = {
   }
 }
 
-export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
+export default function GetKeyValue({columnKey, index, item, type, actions}: TProps) {
 
   const getNestedValue = (obj: any, key: string) => {
     return key.split('.').reduce((acc, part) => acc?.[part], obj) ?? "-";
@@ -46,10 +48,10 @@ export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
     case "actions":
       return (
         <div className="flex items-center justify-center gap-2">
-          <Button isIconOnly variant="flat" color="primary" type="button" onPress={() => actions?.handleView()}>
+          <Button isIconOnly variant="flat" color="primary" as={Link} href={`/dashboard/${type}/detail/${item.id}`} type="button">
             {icons.eye}
           </Button>
-          <Button isIconOnly variant="flat" color="warning" type="button">
+          <Button isIconOnly variant="flat" color="warning" as={Link} href={`/dashboard/${type}/edit/${item.id}`} type="button">
             {icons.edit}
           </Button>
           <Button isIconOnly variant="flat" color="danger" type="button" onPress={() => actions?.handleDelete(item.id)} >

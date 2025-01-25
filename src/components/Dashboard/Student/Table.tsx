@@ -11,7 +11,7 @@ const TableStudent = () => {
   return (
     <>
       <TableData
-        // actions={{ handleDelete: openDelete }}
+        type="student"
         data={students}
         status={status}
         columns={[

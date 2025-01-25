@@ -12,6 +12,7 @@ const TableTransaction = () => {
       <TableData
         data={transactions}
         status={status}
+        type="transaction"
         columns={[
           { key: "id", label: "No" },
           { key: "admin.name", label: "Nama" },

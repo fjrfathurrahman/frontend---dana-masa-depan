@@ -15,6 +15,7 @@ interface ITable {
   data: any;
   status: string;
   columns: { key: string; label: string }[];
+  type: 'student' | 'transaction' | 'admin'
   actions?: {
     handleDelete: (id: number) => void;
     handleView: () => void;
@@ -22,7 +23,7 @@ interface ITable {
   };
 }
 
-const TableData: React.FC<ITable> = ({ data, status, columns, actions }) => {
+const TableData: React.FC<ITable> = ({ data, type, status, columns, actions }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 10;
 
@@ -67,6 +68,7 @@ const TableData: React.FC<ITable> = ({ data, status, columns, actions }) => {
                       index={index}
                       item={item}
                       actions={actions}
+                      type={type}
                     />
                   }
                 </TableCell>

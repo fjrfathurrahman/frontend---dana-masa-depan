@@ -44,7 +44,8 @@ export default function RootLayout({
             <AppProgressBar
               height="4px"
               color="#00000"
-              options={{ showSpinner: false }}
+              options={{ showSpinner: true }}
+              delay={300}
               shallowRouting
             />
             {loading ? <Loader /> : children}

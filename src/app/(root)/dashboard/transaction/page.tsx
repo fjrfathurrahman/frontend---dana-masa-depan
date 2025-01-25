@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import TableTransaction from "@/components/Dashboard/Transaction/Table";
 import ModalTransaction from "@/components/Dashboard/Transaction/ModalTransaction";
 import ExportToExcel from "@/components/Dashboard/Transaction/ExportToExcel";

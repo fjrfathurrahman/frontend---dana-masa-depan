@@ -27,4 +27,11 @@ function formattedDate(value: string): string {
     return inputTime.format("dddd, HH:mm"); 
   }
 }
-export { formatedCurrency, formattedDate };
+
+function formattedDateOnly(value: string): string {
+  const inputTime = moment(value); 
+  return inputTime.format("dddd, D MMM YYYY"); 
+}
+
+
+export { formatedCurrency, formattedDate, formattedDateOnly };

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "@/components/Layouts/DefaultLaout";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import TableStudent from "@/components/Dashboard/Student/Table";
 import ModalAdd from "@/components/Dashboard/Student/ModalAdd";
 import ExportToExcel from "@/components/Dashboard/Student/ExportToExcel";
