@@ -4,6 +4,16 @@ import { icons } from "@/resource/icons";
 import Link from "next/link";
 
 interface Props {
+  actions: {
+    download: {
+      handleDownload: () => void;
+      load: boolean;
+    },
+    // edit: {
+    //   handleEdit: () => void;
+    //   status: string;
+    // }
+  }
   bio: {
     name: string;
     class: string;
@@ -16,9 +26,9 @@ interface Props {
   };
 }
 
-const Profile = ({ bio }: Props) => {
+const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props) => {
   return (
-    <div className="relative z-30 col-span-4 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card">
+    <div className="relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
       <Image
         src="/images/cover/bg15.png"
         alt="image"
@@ -30,24 +40,24 @@ const Profile = ({ bio }: Props) => {
 
       <div className="relative z-30 mx-auto -mt-20 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-[176px] sm:p-3">
         <div className="relative drop-shadow-2">
-          <Image
-            src={`http://localhost:8000/storage/${bio?.photo}`}
-            width={160}
-            height={160}
-            className="rounded-full"
-            alt="profile"
-          />
+          {bio.photo && (
+            <Image
+              src={`http://localhost:8000/storage/${bio?.photo}`}
+              className="h-auto w-auto rounded-full object-cover object-center"
+              alt="profile"
+            />
+          )}
         </div>
       </div>
 
-      <div className="mx-auto mt-4 w-1/2 pb-16">
-        <h4 className="h4 mx-auto line-clamp-2 w-2/4 text-center font-bold">
+      <div className="mx-auto mt-4 w-full px-6.5 pb-14 md:w-4/5 xl:w-3/4">
+        <h4 className="h4 mx-auto line-clamp-2 w-3/4 text-center font-bold md:w-2/4">
           {bio.name}
         </h4>
-        <Divider className="my-4" />
+        <Divider className="my-6" />
 
         <div>
-          <ul className="list-disc space-y-2">
+          <ul className="list-disc space-y-2.5">
             {bio.listData?.map((item) => (
               <ListValue
                 key={item.label}
@@ -58,18 +68,45 @@ const Profile = ({ bio }: Props) => {
           </ul>
         </div>
 
-        <Divider className="my-4" />
+        <Divider className="my-6" />
 
-        <div className="flex justify-end gap-2">
-          <Button isIconOnly as={Link} href={`https://wa.me/${bio?.phone}`} variant="flat">
-            {icons.whatsapp}
+        <div className="flex justify-between gap-2">
+          <Button type="button" startContent={icons.export} onPress={handleDownload} isDisabled={load} color="primary">
+            Download Transaksi
           </Button>
-          <Button isIconOnly as={Link} href={`https://instagram.com/${bio?.name}`} variant="flat">
-            {icons.instagram}
-          </Button>
+            
+          <div className="flex gap-2">
+            <Button
+              isIconOnly
+              as={Link}
+              href={`https://wa.me/${bio?.phone}`}
+              variant="flat"
+            >
+              {icons.whatsapp}
+            </Button>
+            <Button
+              isIconOnly
+              as={Link}
+              href={`https://instagram.com/${bio?.name}`}
+              variant="flat"
+            >
+              {icons.instagram}
+            </Button>
+          </div>
+        </div>
+
+        <Divider className="my-6" />
+
+        <div>
+          <h6>Informasi Orang Tua</h6>
+
+          <div className="mt-4 h-24 border-2 border-dashed rounded-xl flex justify-center items-center">
+            <p className="text-gray-6 dark:text-gray-4 text-small">
+              Fitur belum tersedia
+            </p>
+          </div>
         </div>
       </div>
-
     </div>
   );
 };

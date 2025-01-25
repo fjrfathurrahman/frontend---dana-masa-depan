@@ -20,7 +20,7 @@ function useTransaction() {
       onError: () => {
         toast.error("Terjadi kesalahan");
       },
-    }
+    },
   );
 }
 
@@ -37,9 +37,21 @@ function useGetTransactions() {
     onSuccess: (data) => console.log(data),
     onError: () => {
       toast.error("Terjadi kesalahan");
-    }
+    },
+  });
+}
 
-  })
+function useGetTransactionByStudent(id: string) {
+  return useQuery({
+    queryFn: async () =>
+      await axiosInstance.get(`transactions/getTransactionsByStudentId/${id}`),
+    queryKey: ["transactions", id],
+    staleTime: 10000,
+    onSuccess: (data) => console.log(data),
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    },
+  });
 }
 
 /**
@@ -57,7 +69,9 @@ export function useGetWeeklySummary() {
       // Format tanggal menjadi nama hari
       const formattedData = data.map((item: WeeklyTransaction) => ({
         ...item,
-        day: new Intl.DateTimeFormat("id-ID", { weekday: "long" }).format(new Date(item.date)),
+        day: new Intl.DateTimeFormat("id-ID", { weekday: "long" }).format(
+          new Date(item.date),
+        ),
       }));
 
       return formattedData;
@@ -77,7 +91,7 @@ export function useGetWeeklySummary() {
  * @param {any[]} data - Data to be exported.
  * @param {string} filename - The name of the file to be exported (without extension).
  */
-const ExportTransactions = (data: any[], filename: string) => {
+function ExportTransactions(data: any[], filename: string) {
   const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
 
@@ -85,17 +99,43 @@ const ExportTransactions = (data: any[], filename: string) => {
   XLSX.writeFile(workbook, `${filename}.xlsx`);
 }
 
+function ExportTransactionsByStudent(id: string | number) {
+  return useMutation({
+    mutationFn: async (id: string | number) => {
+      const response = await axiosInstance.get(`/transactions/student/${id}`, {
+        responseType: "blob",
+      });
+
+      // Proses unduhan file
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `Transactions_Student_${id}.xlsx`);
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    },
+    onSuccess: () => {
+      toast.success("File berhasil diunduh.");
+    },
+    onError: () => {
+      toast.error("Gagal mengunduh file.");
+    },
+  });
+}
 
 export interface WeeklyTransaction {
   date: string;
-  day: string
+  day: string;
   total_deposit: number;
   total_withdrawal: number;
 }
 
-
 export {
   useTransaction,
   useGetTransactions,
-  ExportTransactions
-}
+  ExportTransactions,
+  useGetTransactionByStudent,
+  ExportTransactionsByStudent,
+};
