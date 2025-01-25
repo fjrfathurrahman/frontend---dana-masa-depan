@@ -3,6 +3,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import TableTransaction from "@/components/Dashboard/Transaction/Table";
 import ModalTransaction from "@/components/Dashboard/Transaction/ModalTransaction";
+import ExportToExcel from "@/components/Dashboard/Transaction/ExportToExcel";
 
 export const metadata: Metadata = {
   title: "Next.js Transaction Page | NextAdmin - Next.js Dashboard Kit",
@@ -15,6 +16,7 @@ export default function Transaction() {
       <div className="mx-auto w-full">
         <Breadcrumb pageName="Transaksi">
           <ModalTransaction/>
+          <ExportToExcel/>
         </Breadcrumb>
 
         <TableTransaction/>

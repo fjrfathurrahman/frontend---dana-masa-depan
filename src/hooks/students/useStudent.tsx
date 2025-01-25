@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "sonner";
+import * as XLSX from "xlsx";
 
 /**
  * * A custom hook to fetch student data by ID or get all students.
@@ -45,7 +46,22 @@ function useAddStudent() {
   })
 }
 
+/**
+ * Export student data to an Excel file.
+ *
+ * @param {any[]} data - The student data to be exported.
+ * @param {string} fileName - The name of the file to be exported (without extension).
+ */
+const ExportStudents = (data: any[], fileName: string) => {
+  const worksheet = XLSX.utils.json_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
+  XLSX.writeFile(workbook, `${fileName}.xlsx`);
+}
+
 export {
   useGetStudent,
-  useAddStudent
+  useAddStudent,
+  ExportStudents
 }

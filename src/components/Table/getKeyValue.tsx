@@ -8,6 +8,7 @@ type TProps = {
   index: number;
   actions?: {
     handleDelete: (id: number) => void
+    handleView: () => void
     // handleEdit: () => void
   }
 }
@@ -45,7 +46,7 @@ export default function GetKeyValue({columnKey, index, item, actions}: TProps) {
     case "actions":
       return (
         <div className="flex items-center justify-center gap-2">
-          <Button isIconOnly variant="flat" color="primary" type="button">
+          <Button isIconOnly variant="flat" color="primary" type="button" onPress={() => actions?.handleView()}>
             {icons.eye}
           </Button>
           <Button isIconOnly variant="flat" color="warning" type="button">

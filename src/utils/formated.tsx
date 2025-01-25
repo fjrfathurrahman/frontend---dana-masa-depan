@@ -1,4 +1,7 @@
-import moment from "moment";
+import moment, { locale } from "moment";
+import "moment/locale/id";
+
+locale("id-ID");
 
 function formatedCurrency(value: number) {
   return value.toLocaleString("id-ID", {

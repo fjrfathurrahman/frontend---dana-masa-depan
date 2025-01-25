@@ -17,6 +17,7 @@ interface ITable {
   columns: { key: string; label: string }[];
   actions?: {
     handleDelete: (id: number) => void;
+    handleView: () => void;
     // handleEdit: () => void;
   };
 }

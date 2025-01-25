@@ -28,7 +28,6 @@ export const AddAdminSchema = z.object({
 
     photo: z.custom<FileList>().refine((files) =>!files || ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), "Hanya format .jpg, .jpeg, .png, .gif dan .svg yang didukung"),
 
-
     password: z
       .string()
       .min(8, { message: "Password minimal 8 karakter" })

@@ -7,6 +7,7 @@ import { TbUserCog } from "react-icons/tb";
 import { HiOutlineUserGroup, HiOutlineUser } from "react-icons/hi2";
 import { GrTransaction } from "react-icons/gr";
 import { HiTrendingUp, HiTrendingDown } from "react-icons/hi";
+import { PiExportBold } from "react-icons/pi";
 
 export const icons = {
   dashboard: <RxDashboard size={24} />,
@@ -21,5 +22,6 @@ export const icons = {
   eyeOff: <FiEyeOff size={22} />,
   delete: <RiDeleteBin5Line size={22} />,
   edit: <FiEdit size={22} />,
-  plus: <FaPlus size={20} />
+  plus: <FaPlus size={20} />,
+  export: <PiExportBold size={22} />
 };

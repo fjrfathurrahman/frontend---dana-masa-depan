@@ -6,6 +6,8 @@ import { useDeleteAdmin, useGetAdmin } from "@/hooks/admins/useAdmin";
 import { IAdmin } from "@/types/ress";
 import { useDisclosure } from "@heroui/react";
 import { useState } from "react";
+import ModalView from "./ModalView";
+import Link from "next/link";
 
 const TableAdmin = () => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
@@ -13,12 +15,13 @@ const TableAdmin = () => {
   const admins = data?.data?.data as IAdmin[];
 
   const { mutate: Delete, status: statusDelete } = useDeleteAdmin();
-  const { isOpen, onOpenChange, onOpen, onClose } = useDisclosure();
+  const { isOpen: openDelete, onOpenChange: openChangeDelete, onOpen: onOpenDelete, onClose } = useDisclosure();
 
-  const openDelete = (itemId: number) => {
+  const openModalDelete = (itemId: number) => {
     setSelectedItem(itemId);
-    onOpen();
+    onOpenDelete();
   };
+
   const onDelete = () => {
     if (selectedItem) {
       Delete(selectedItem);
@@ -30,7 +33,7 @@ const TableAdmin = () => {
   return (
     <>
       <TableData
-        actions={{ handleDelete: openDelete }}
+        actions={{ handleDelete: openModalDelete, handleView: () => console.log("view") }}
         data={admins}
         status={status}
         columns={[
@@ -44,8 +47,8 @@ const TableAdmin = () => {
       />
 
       <ModalDelete
-        open={isOpen}
-        onOpenChange={onOpenChange}
+        open={openDelete}
+        onOpenChange={openChangeDelete}
         confirmDelete={onDelete}
         status={statusDelete}
       />
