@@ -46,6 +46,48 @@ function useAddStudent() {
   })
 }
 
+
+/**
+ * * A custom hook to update student data.
+ *
+ * @param {string | number} id - The ID of the student to update.
+ * @returns {UseMutationResult} - The result of the mutation, including status and functions
+ */
+function useUpdateStudent(id: number | string) {
+  return useMutation({
+    mutationFn: async (data: FormData) => axiosInstance.post(`/students/edit/${id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }),
+    mutationKey: ['students', id],
+    onSuccess: () => {
+      toast.success("Action berhasil!");
+    },
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    }
+  })
+}
+/**
+ * * a custom hook to delete a student
+ *
+ * @param {string | number} id - id student yang ingin dihapus
+ * @returns {UseMutationResult} - hasil mutasi untuk operasi penghapusan
+ */
+function useDeleteStudent() {
+  return useMutation({
+    mutationFn: async (id: number | string) => axiosInstance.delete(`/students/${id}`),
+    mutationKey: ['students'],
+    onSuccess: () => {
+      toast.success("Action berhasil!");
+    },
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    }
+  })
+}
+
 /**
  * Export student data to an Excel file.
  *
@@ -63,5 +105,7 @@ const ExportStudents = (data: any[], fileName: string) => {
 export {
   useGetStudent,
   useAddStudent,
+  useUpdateStudent,
+  useDeleteStudent,
   ExportStudents
 }

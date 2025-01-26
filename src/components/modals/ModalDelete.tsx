@@ -1,15 +1,22 @@
 import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody } from "@heroui/modal";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@heroui/modal";
 import { Button } from "@heroui/react";
 
 type TProps = {
   open: boolean;
+  close: () => void;
   status: string;
   onOpenChange: () => void;
   confirmDelete: () => void;
 };
 
-const ModalDelete = ({ open, confirmDelete }: TProps) => {
+const ModalDelete = ({ open, confirmDelete,close }: TProps) => {
   return (
     <Modal isOpen={open}>
       <ModalContent>
@@ -20,18 +27,19 @@ const ModalDelete = ({ open, confirmDelete }: TProps) => {
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
                 delectus fuga sequi recusandae ipsum architecto impedit
-                consequatur perferendis suscipit ex!
               </p>
+            </ModalBody>
+            <ModalFooter>
+              <Button onPress={close}>Kembali</Button>
               <Button
                 color="danger"
-                className="mt-4"
                 onPress={confirmDelete}
                 type="button"
                 isLoading={status === "loading"}
               >
                 Delete
               </Button>
-            </ModalBody>
+            </ModalFooter>
           </>
         )}
       </ModalContent>

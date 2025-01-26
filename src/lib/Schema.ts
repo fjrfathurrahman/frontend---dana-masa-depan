@@ -53,6 +53,28 @@ export const AddAdminSchema = z.object({
 
 export type TAddAdmin = z.infer<typeof AddAdminSchema>;
 
+export const UpdateStudentSchema = z.object({
+  name: z.string().min(3, { message: "Nama minimal 3 karakter" }).max(50, { message: "Nama maksimal 50 karakter" }).optional(),
+  student_number: z.string().min(3, { message: "NISN minimal 3 karakter" }).max(11, { message: "NISN maksimal 11 karakter" }).optional(),
+  class: z.enum(["X", "XI", "XII"], {
+    errorMap: () => ({
+      message: "Kelas hanya bisa salah satu dari: X, XI, atau XII",
+    }),
+  }).optional(),
+  major: z.string().min(3, { message: "Jurusan minimal 3 karakter" }).max(50, { message: "Jurusan maksimal 50 karakter" }).optional(),
+  gender: z.enum(["Laki-laki", "Perempuan"], {
+    errorMap: () => ({
+      message: "Jenis kelamin hanya bisa salah satu dari: Laki-laki atau Perempuan",
+    }),
+  }).optional(),
+  address: z.string().min(3, { message: "Alamat minimal 3 karakter" }).optional(),
+  email: z.string().email({ message: "Email tidak valid" }).optional(),
+  phone: z.string().min(3, { message: "Nomor handphone minimal 3 karakter" }).max(13, { message: "Nomor handphone maksimal 13 karakter" }).optional(),
+  photo: z.custom<FileList>().refine((files) =>!files || ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), "Hanya format .jpg, .jpeg, .png, .gif dan .svg yang didukung").optional(),
+})
+
+export type TUpdateStudent = z.infer<typeof UpdateStudentSchema>;
+
 export const AddStudentSchema = z.object({
   name: z.string().min(3, { message: "Nama minimal 3 karakter" }).max(260, { message: "Nama maksimal 260 karakter" }),
   student_number: z.string().min(3, { message: "NISN minimal 3 karakter" }).max(11, { message: "NISN maksimal 11 karakter" }),

@@ -1,4 +1,4 @@
-import { Button, Divider, Image } from "@heroui/react";
+import { Avatar, Button, Divider, Image } from "@heroui/react";
 import ListValue from "./ListValue";
 import { icons } from "@/resource/icons";
 import Link from "next/link";
@@ -8,12 +8,12 @@ interface Props {
     download: {
       handleDownload: () => void;
       load: boolean;
-    },
+    };
     // edit: {
     //   handleEdit: () => void;
     //   status: string;
     // }
-  }
+  };
   bio: {
     name: string;
     class: string;
@@ -26,7 +26,12 @@ interface Props {
   };
 }
 
-const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props) => {
+const Profile = ({
+  bio,
+  actions: {
+    download: { handleDownload, load },
+  },
+}: Props) => {
   return (
     <div className="relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
       <Image
@@ -38,16 +43,13 @@ const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props
         style={{ width: "auto" }}
       />
 
-      <div className="relative z-30 mx-auto -mt-20 h-24 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-[176px] sm:p-3">
-        <div className="relative drop-shadow-2">
-          {bio.photo && (
-            <Image
-              src={`http://localhost:8000/storage/${bio?.photo}`}
-              className="h-auto w-auto rounded-full object-cover object-center"
-              alt="profile"
-            />
-          )}
-        </div>
+      <div className="relative z-30 mx-auto -mt-12 flex h-24 items-center justify-center">
+        {bio.photo && (
+          <Avatar
+            src={`http://localhost:8000/storage/${bio?.photo}`}
+            className="h-24 w-24 rounded-full border-4 border-white object-cover"
+          />
+        )}
       </div>
 
       <div className="mx-auto mt-4 w-full px-6.5 pb-14 md:w-4/5 xl:w-3/4">
@@ -71,10 +73,16 @@ const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props
         <Divider className="my-6" />
 
         <div className="flex justify-between gap-2">
-          <Button type="button" startContent={icons.export} onPress={handleDownload} isDisabled={load} color="primary">
+          <Button
+            type="button"
+            startContent={icons.export}
+            onPress={handleDownload}
+            isDisabled={load}
+            color="primary"
+          >
             Export Semua Transaksi
           </Button>
-            
+
           <div className="flex gap-2">
             <Button
               isIconOnly
@@ -111,8 +119,8 @@ const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props
         <div>
           <h6>Informasi Orang Tua</h6>
 
-          <div className="mt-4 h-24 border-2 border-dashed rounded-xl flex justify-center items-center">
-            <p className="text-gray-6 dark:text-gray-4 text-small">
+          <div className="mt-4 flex h-24 items-center justify-center rounded-xl border-2 border-dashed">
+            <p className="text-small text-gray-6 dark:text-gray-4">
               Fitur belum tersedia
             </p>
           </div>

@@ -49,6 +49,7 @@ const TableAdmin = () => {
 
       <ModalDelete
         open={openDelete}
+        close={onClose}
         onOpenChange={openChangeDelete}
         confirmDelete={onDelete}
         status={statusDelete}
