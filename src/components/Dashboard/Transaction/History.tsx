@@ -4,8 +4,7 @@ import { useGetTransactions } from "@/hooks/transactions/useTransactions";
 import { Card, CardBody, CardHeader } from "@heroui/react";
 import CardHistory from "../../Card/CardHistory";
 
-const History = () => {
-  const { data, isLoading } = useGetTransactions();
+const History = ({data}: {data: any}) => {
   const history = data?.data?.data;
 
   // Sort the history array in descending order
@@ -15,8 +14,6 @@ const History = () => {
     return dateB - dateA; 
   });
 
-  if (isLoading) return null;
-
   return (
     <Card className="col-span-12 rounded-[10px] bg-white px-7.5 py-7.5 dark:bg-gray-dark xl:col-span-5">
       <CardHeader>
@@ -24,7 +21,7 @@ const History = () => {
       </CardHeader>
 
       <CardBody className="flex flex-col gap-4" >
-        {sortedHistory?.length > 0 ? sortedHistory?.slice(0, 4).map((item: any) => (
+        {sortedHistory?.length > 0 ? sortedHistory?.slice(0, 3).map((item: any) => (
           <CardHistory key={item} {...item} />
         )) : <p>Tidak data ditemukan...</p>}
       </CardBody>

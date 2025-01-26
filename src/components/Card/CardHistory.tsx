@@ -1,6 +1,9 @@
 import {
+  Avatar,
+  Button,
   Card,
   CardBody,
+  CardHeader,
   Divider,
   Popover,
   PopoverContent,
@@ -8,7 +11,11 @@ import {
 } from "@heroui/react";
 import { icons } from "@/resource/icons";
 import Image from "next/image";
-import { formatedCurrency, formattedDate } from "@/utils/formated";
+import {
+  formatedCurrency,
+  formattedDate,
+  formattedDateOnly,
+} from "@/utils/formated";
 
 type Props = {
   id: number;
@@ -36,19 +43,36 @@ const CardHistory: React.FC<Props> = (props) => {
     <>
       <Popover placement="bottom" backdrop={"opaque"} offset={10}>
         <PopoverTrigger>
-          <button>
-            <Card className={`border-2 ${props.type === "deposit" ? "border-success bg-success/20" : "border-danger bg-danger/20"}`}>
-              <CardBody className="flex flex-row items-center justify-between">
-                <div className={`${props.type === "deposit" ? "bg-success" : "bg-danger"} me-2 flex h-8 w-8 items-center justify-center rounded-full text-white`}>
+          <button className="w-full">
+            <Card className="px-2">
+              <CardHeader className="flex gap-3">
+                <Button
+                  className="flex text-white"
+                  isIconOnly
+                  color={`${props.type === "deposit" ? "success" : "danger"}`}
+                >
                   {props.type === "deposit" ? icons.trendUp : icons.trendDown}
+                </Button>
+                <h5 className="h5">{formatedCurrency(props?.amount)}</h5>
+              </CardHeader>
+              <Divider />
+              <CardBody>
+                <div className="flex items-center gap-4">
+                  {props.admin.photo && (
+                    <Avatar
+                      src={`http://localhost:8000/storage/${props?.admin?.photo}`}
+                      size="lg"
+                      isBordered
+                    />
+                  )}
+
+                  <div>
+                    <h6>{props?.admin?.name}</h6>
+                    <p className="text-small text-gray-6 dark:text-gray-4">
+                      {formattedDateOnly(props?.created_at)}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex w-1/2 flex-col">
-                  <h5 className="h6 line-clamp-1">{props.student.name}</h5>
-                  <p className="text-gray-6 dark:text-gray-4">
-                    {props?.student.class} - {props?.student.major} - {formattedDate(props.created_at)}
-                  </p>
-                </div>
-                <h4 className="h5 w-max">{formatedCurrency(props.amount)}</h4>
               </CardBody>
             </Card>
           </button>

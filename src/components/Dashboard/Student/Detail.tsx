@@ -1,10 +1,10 @@
 "use client";
 
 import Profile from "@/components/Template/Profile";
+import HistoryDetail from "./HistoryDetail";
 import { useGetStudent } from "@/hooks/students/useStudent";
 import { formatedCurrency, formattedDateOnly } from "@/utils/formated";
-import { Chip } from "@heroui/react";
-import HistoryDetail from "./HistoryDetail";
+import { Chip, Spinner } from "@heroui/react";
 import { icons } from "@/resource/icons";
 import { ExportTransactionsByStudent, useGetTransactionByStudent } from "@/hooks/transactions/useTransactions";
 
@@ -16,7 +16,7 @@ const Detail = ({ id }: { id: string }) => {
   const student = students?.data.data;
   const transactionsByStudent = transactions?.data?.data;
 
-  if (loadStudents || loadTransactions) return null;
+  if (loadStudents || loadTransactions) return <div className="flex h-screen items-center justify-center bg-white dark:bg-dark rounded-xl"><Spinner size="lg"/></div>;
 
   return (
     <main>

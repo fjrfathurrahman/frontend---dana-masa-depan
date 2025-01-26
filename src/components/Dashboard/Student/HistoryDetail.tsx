@@ -1,3 +1,4 @@
+import CardHistory from "@/components/Card/CardHistory";
 import { icons } from "@/resource/icons";
 import { formatedCurrency, formattedDateOnly } from "@/utils/formated";
 import { Button, Card, CardBody, CardHeader, Divider } from "@heroui/react";
@@ -17,40 +18,8 @@ const HistoryDetail = ({ data }: { data: [] }) => {
 
         <div className="mt-8 space-y-4">
           {data?.length > 0 ? (
-            data?.slice(0, 4)?.map((item: any) => (
-              <Card key={item} className="px-2">
-                <CardHeader className="flex gap-3">
-                  <Button
-                    className="flex text-white"
-                    isIconOnly
-                    color={`${item.type === "deposit" ? "success" : "danger"}`}
-                  >
-                    {item.type === "deposit" ? icons.trendUp : icons.trendDown}
-                  </Button>
-                  <h5 className="h5">{formatedCurrency(item?.amount)}</h5>
-                </CardHeader>
-                <Divider />
-                <CardBody>
-                  <div className="flex items-center gap-4">
-                    {item.admin.photo && (
-                      <Image
-                        src={`http://localhost:8000/storage/${item?.admin?.photo}`}
-                        width={50}
-                        height={50}
-                        className="rounded-full"
-                        alt="profile"
-                      />
-                    )}
-
-                    <div>
-                      <h6 className="h6">{item?.admin?.name}</h6>
-                      <p className="text-gray-6 dark:text-gray-4">
-                        {formattedDateOnly(item?.created_at)}
-                      </p>
-                    </div>
-                  </div>
-                </CardBody>
-              </Card>
+            data?.slice(0, 5)?.map((item: any) => (
+              <CardHistory key={item.id} {...item} />
             ))
           ) : (
             <h6 className="h6">Tidak ada riwayat transaksi</h6>

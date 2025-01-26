@@ -24,7 +24,7 @@ function formattedDate(value: string): string {
   } else if (duration.asDays() < 2) {
     return `Kemarin, ${inputTime.format("HH:mm")}`;
   } else {
-    return inputTime.format("dddd, HH:mm"); 
+    return inputTime.format("dddd, D MMM"); 
   }
 }
 

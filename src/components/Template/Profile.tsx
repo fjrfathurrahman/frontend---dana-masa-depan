@@ -38,7 +38,7 @@ const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props
         style={{ width: "auto" }}
       />
 
-      <div className="relative z-30 mx-auto -mt-20 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-[176px] sm:p-3">
+      <div className="relative z-30 mx-auto -mt-20 h-24 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-[176px] sm:p-3">
         <div className="relative drop-shadow-2">
           {bio.photo && (
             <Image
@@ -72,15 +72,25 @@ const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props
 
         <div className="flex justify-between gap-2">
           <Button type="button" startContent={icons.export} onPress={handleDownload} isDisabled={load} color="primary">
-            Download Transaksi
+            Export Semua Transaksi
           </Button>
             
           <div className="flex gap-2">
             <Button
               isIconOnly
               as={Link}
+              href={`https://maps.google.com/?q=`}
+              variant="flat"
+              target="_blank"
+            >
+              {icons.location}
+            </Button>
+            <Button
+              isIconOnly
+              as={Link}
               href={`https://wa.me/${bio?.phone}`}
               variant="flat"
+              target="_blank"
             >
               {icons.whatsapp}
             </Button>
@@ -89,6 +99,7 @@ const Profile = ({ bio, actions: { download: { handleDownload, load } } }: Props
               as={Link}
               href={`https://instagram.com/${bio?.name}`}
               variant="flat"
+              target="_blank"
             >
               {icons.instagram}
             </Button>

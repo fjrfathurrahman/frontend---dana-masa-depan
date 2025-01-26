@@ -130,7 +130,7 @@ const Overview: React.FC<dataStats> = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-4">
         <Card className="p-3 dark:bg-gray-dark" isPressable>
           <CardHeader>
             <div className="flex h-14.5 w-14.5 items-center justify-center rounded-full bg-warning-400 text-white">
@@ -140,7 +140,7 @@ const Overview: React.FC<dataStats> = () => {
           <CardBody>
             <div>
               <h4 className="h3">{info?.students_count ?? 0}</h4>
-              <span className="text-body-sm font-medium">
+              <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Siswa Menabung
               </span>
             </div>
@@ -155,10 +155,10 @@ const Overview: React.FC<dataStats> = () => {
           </CardHeader>
           <CardBody>
             <div>
-              <h4 className="h3">
+              <h4 className="h4 line-clamp-1">
                 {info?.total_balance ? formatedCurrency(info.total_balance) : "0,00"}
               </h4>
-              <span className="text-body-sm font-medium">
+              <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Siswa Menabung
               </span>
             </div>
@@ -173,10 +173,10 @@ const Overview: React.FC<dataStats> = () => {
           </CardHeader>
           <CardBody>
             <div>
-              <h4 className="h3">
+              <h4 className="h4 line-clamp-1">
                 {info?.total_deposit ? formatedCurrency(info.total_deposit) : "0,00"}
               </h4>
-              <span className="text-body-sm font-medium">
+              <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Deposit
               </span>
             </div>
@@ -191,10 +191,10 @@ const Overview: React.FC<dataStats> = () => {
           </CardHeader>
           <CardBody>
             <div>
-              <h4 className="h3">
+              <h4 className="h4 line-clamp-1">
                 {info?.total_withdrawal ? formatedCurrency(info.total_withdrawal) : "0,00"}
               </h4>
-              <span className="text-body-sm font-medium">
+              <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Withdraw
               </span>
             </div>

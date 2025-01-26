@@ -9,7 +9,16 @@ export const loginSchema = z.object({
 
 export type TLogin = z.infer<typeof loginSchema>;
 
+export const UpdateAdminSchema = z.object({
+  name: z.string().min(3, { message: "Nama minimal 3 karakter" }).max(50, { message: "Nama maksimal 50 karakter" }).optional(),
+  email: z.string().email({ message: "Email tidak valid" }).optional(),
+  role: z.string().optional(),
+  photo: z.custom<FileList>().refine((files) =>!files || ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), "Hanya format .jpg, .jpeg, .png, .gif dan .svg yang didukung").optional(),
+  password: z.string().min(8, { message: "Password minimal 8 karakter" }).max(128, { message: "Password maksimal 128 karakter" }).optional(),
+  confirmPassword: z.string().min(1, { message: "Konfirmasi password harus diisi" }).optional(),
+});
 
+export type TUpdateAdmin = z.infer<typeof UpdateAdminSchema>;
 
 export const AddAdminSchema = z.object({
     name: z

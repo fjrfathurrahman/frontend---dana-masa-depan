@@ -1,6 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
 import { TAddAdmin, TLogin } from "@/lib/Schema";
-import { useDisclosure } from "@heroui/react";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -48,7 +47,7 @@ function useGetAdmin(id?: string | number) {
 
   return useQuery({
     queryKey: ['admins', id],
-    // refetchInterval: 10000,
+    refetchInterval: 10000,
     queryFn: async () => axiosInstance.get(url),
     onError: () => {
       toast.error('Terjadi kesalahan');
@@ -73,7 +72,7 @@ function useAddAdmin() {
       },
     }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admins'], refetchActive: true });
+      queryClient.invalidateQueries({ queryKey: ['admins'] });
       toast.success("Action berhasil!");
     },
     onError: () => {
@@ -105,4 +104,27 @@ function useDeleteAdmin() {
   });
 }
 
-export { useLoginAdmin, useGetAdmin, useAddAdmin, useDeleteAdmin };
+/**
+ * * function untuk mengupdate admin berdasarkan id
+ *
+ * @param {string | number} id - id admin yang ingin diupdate
+ * @returns {UseMutationResult} - hasil mutasi untuk operasi pengupdatean
+ */
+function useUpdateAdmin(id: string | number) {
+  return useMutation({
+    mutationFn: async (data: FormData) => axiosInstance.post(`/admins/edit/${id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }),
+    mutationKey: ['admins', id],
+    onSuccess: () => {
+      toast.success("Action berhasil!");
+    },
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    },
+  })
+}
+
+export { useLoginAdmin, useUpdateAdmin, useGetAdmin, useAddAdmin, useDeleteAdmin };

@@ -9,6 +9,7 @@ import { GrTransaction } from "react-icons/gr";
 import { HiTrendingUp, HiTrendingDown } from "react-icons/hi";
 import { PiExportBold } from "react-icons/pi";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa6";
+import { IoLocationOutline } from "react-icons/io5";
 
 export const icons = {
   dashboard: <RxDashboard size={24} />,
@@ -27,5 +28,6 @@ export const icons = {
   export: <PiExportBold size={22} />,
   coin: <TbCoin size={22} />,
   whatsapp: <FaWhatsapp size={22} />,
-  instagram: <FaInstagram size={22} />
+  instagram: <FaInstagram size={22} />,
+  location: <IoLocationOutline size={22} />
 };

@@ -41,17 +41,40 @@ function useGetTransactions() {
   });
 }
 
+/**
+ * A custom hook to fetch transactions by student ID.
+ *
+ * @param {string} id - The student ID for which transactions are retrieved.
+ * @returns {UseQueryResult} - The result of the query, including status, data, and error information.
+ */
 function useGetTransactionByStudent(id: string) {
   return useQuery({
     queryFn: async () =>
       await axiosInstance.get(`transactions/getTransactionsByStudentId/${id}`),
     queryKey: ["transactions", id],
     staleTime: 10000,
-    onSuccess: (data) => console.log(data),
+    // onSuccess: (data) => console.log(data),
     onError: () => {
       toast.error("Terjadi kesalahan");
     },
   });
+}
+
+/**
+ * A custom hook to fetch the top balance of transactions.
+ *
+ * @returns {UseQueryResult} - The result of the query, including status, data, and error information.
+ */
+function useGetTopBalance() {
+  return useQuery({
+    queryFn: async () => await axiosInstance.get("transactions/top-balances"),
+    queryKey: ["top-balance"],
+    staleTime: 10000,
+    // onSuccess: (data) => console.log(data),
+    onError: () => {
+      toast.error("Terjadi kesalahan");
+    },
+  })
 }
 
 /**
@@ -138,4 +161,5 @@ export {
   ExportTransactions,
   useGetTransactionByStudent,
   ExportTransactionsByStudent,
+  useGetTopBalance
 };

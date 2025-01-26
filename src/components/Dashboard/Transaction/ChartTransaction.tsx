@@ -5,8 +5,7 @@ import { useGetWeeklySummary } from "@/hooks/transactions/useTransactions";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const ChartTransaction = () => {
-  const { data, isLoading } = useGetWeeklySummary();
+const ChartTransaction = ({data}: {data: any[]}) => {
 
   // Format data untuk Chart.js
   const labels = data?.map((item) => item.day);
@@ -41,17 +40,15 @@ const ChartTransaction = () => {
       },
       title: {
         display: true,
-        text: "Weekly Transaction Summary",
+        text: "Ringkasan Transaksi Minggu ini",
       },
     },
   };
 
-  if (isLoading) return null;
-
   return (
-    <Card className="col-span-12 rounded-[10px] bg-white px-7.5 pb-6 pt-7.5 dark:bg-gray-dark xl:col-span-7">
+    <Card className="col-span-12 rounded-[10px] bg-white px-7.5 pb-6 pt-7.5 dark:bg-gray-dark xl:col-span-7 h-max">
       <CardHeader>
-        <h5 className="h5">Transaksi Minggu ini</h5>
+        <h5 className="h5 mb-6">Transaksi Minggu ini</h5>
       </CardHeader>
       <CardBody>
         { data ? <Bar data={chartData} options={options} /> : <p>Data Tidak ada Ditemukan</p> }
