@@ -6,7 +6,7 @@ import { useGetStudent } from "@/hooks/students/useStudent";
 import { formatedCurrency, formattedDateOnly } from "@/utils/formated";
 import { Chip, Spinner } from "@heroui/react";
 import { icons } from "@/resource/icons";
-import { ExportTransactionsByStudent, useGetTransactionByStudent } from "@/hooks/transactions/useTransactions";
+import { ExportTransactionsByStudent, useAverageByStudent, useGetTransactionByStudent } from "@/hooks/transactions/useTransactions";
 
 const Detail = ({ id }: { id: string }) => {
   const { data: students, isLoading: loadStudents } = useGetStudent(id);
@@ -22,6 +22,7 @@ const Detail = ({ id }: { id: string }) => {
     <main>
       <div className="grid grid-cols-1 xl:grid-cols-6 gap-12">
         <Profile 
+          parent
           actions={{download: { handleDownload: () => mutate(id), load: loadExport }}}
           bio={{
             class: student.class,
@@ -46,7 +47,9 @@ const Detail = ({ id }: { id: string }) => {
           }}
         />
 
-        <HistoryDetail data={transactionsByStudent} />
+        <div className="xl:col-span-2 space-y-8">
+          <HistoryDetail data={transactionsByStudent} />
+        </div>
       </div>
     </main>
   );

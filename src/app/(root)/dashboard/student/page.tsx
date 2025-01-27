@@ -6,8 +6,8 @@ import ModalAdd from "@/components/Dashboard/Student/ModalAdd";
 import ExportToExcel from "@/components/Dashboard/Student/ExportToExcel";
 
 export const metadata: Metadata = {
-  title: "Next.js Student Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Profile page for NextAdmin Dashboard Kit",
+  title: "Siswa | NextAdmin",
+  description: "This is Next.js Savings Dashboard page for NextAdmin Dashboard Kit",
 };
 
 export default function Admin() {

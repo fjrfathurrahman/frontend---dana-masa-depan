@@ -15,16 +15,18 @@ const Hero = () => {
               </span>{" "}
               <br /> Anda dengan Mudah!
             </h2>
-            <p className="p">
+            <p className="p leading-8">
               Ciptakan rencana keuangan Anda dengan aman dan mudah. Website kami
               membantu Anda mengelola dan mengembangkan tabungan untuk mencapai
               tujuan finasial Anda✨
             </p>
             <div className="flex flex-col items-center gap-2 sm:flex-row">
               <button className="btnRoundedFull font-semibold">
-                Gabung Sekarang
+                <a href="http://https://wa.me/6285860118691" target="_blank" rel="noopener noreferrer">Gabung Sekarang</a>
               </button>
-              <button className="btnOutline">Cari Nasabah</button>
+              <button className="btnOutline">
+                <a href="/search">Cari Nasabah</a>
+              </button>
             </div>
           </div>
 

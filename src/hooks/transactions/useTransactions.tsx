@@ -9,19 +9,16 @@ import * as XLSX from "xlsx";
  * @returns {UseMutationResult} - The result of the mutation, including status and functions
  */
 function useTransaction() {
-  return useMutation(
-    async (data: FormData) => {
-      await axiosInstance.post("/transactions", data);
+  return useMutation({
+    mutationKey: ["transactions"],
+    mutationFn: async (data: FormData) => axiosInstance.post("/transactions", data),
+    onSuccess: () => {
+      toast.success("Transaksi berhasil ditambahkan.");
     },
-    {
-      onSuccess: () => {
-        toast.success("Action berhasil!");
-      },
-      onError: () => {
-        toast.error("Terjadi kesalahan");
-      },
+    onError: () => {
+      toast.error("Terjadi kesalahan saat menambahkan transaksi.");
     },
-  );
+  });
 }
 
 /**
@@ -50,7 +47,7 @@ function useGetTransactions() {
 function useGetTransactionByStudent(id: string) {
   return useQuery({
     queryFn: async () =>
-      await axiosInstance.get(`transactions/getTransactionsByStudentId/${id}`),
+      await axiosInstance.get(`transactions/by-student/${id}`),
     queryKey: ["transactions", id],
     staleTime: 10000,
     // onSuccess: (data) => console.log(data),
@@ -83,7 +80,7 @@ function useGetTopBalance() {
  * @returns {UseQueryResult<WeeklyTransaction[]>} - The result of the query, including status, data, and error information.
  */
 
-export function useGetWeeklySummary() {
+function useGetWeeklySummary() {
   return useQuery<WeeklyTransaction[]>({
     queryFn: async () => {
       const response = await axiosInstance.get("/transactions/weekly-summary");
@@ -109,6 +106,23 @@ export function useGetWeeklySummary() {
 }
 
 /**
+ * A custom hook to fetch the average transaction of a student.
+ *
+ * @returns {UseQueryResult} - The result of the query, including status, data, and error information.
+ */
+function useAverageByStudent() {
+  return useQuery({
+    queryFn: async () => await axiosInstance.get(`/transactions/average-transaction`),
+    // queryKey: ["transactions", id],
+    staleTime: 10000,
+    onSuccess: (data) => console.log(data),
+    onError: () => {
+      toast.error("Terjadi kesalahan saat memuat data rata-rata transaksi.");
+    },
+  });
+}
+
+/**
  * Export data to an Excel file.
  *
  * @param {any[]} data - Data to be exported.
@@ -122,6 +136,13 @@ function ExportTransactions(data: any[], filename: string) {
   XLSX.writeFile(workbook, `${filename}.xlsx`);
 }
 
+
+/**
+ * A custom hook to export transactions by student to an Excel file.
+ *
+ * @param {string | number} id - The ID of the student to export transactions for.
+ * @returns {UseMutationResult} - The result of the mutation, including status and functions
+ */
 function ExportTransactionsByStudent(id: string | number) {
   return useMutation({
     mutationFn: async (id: string | number) => {
@@ -148,6 +169,32 @@ function ExportTransactionsByStudent(id: string | number) {
   });
 }
 
+function ExportTransactionsByAdmin(id: string | number) {
+  return useMutation({
+    mutationFn: async (id: string | number) => {
+      const response = await axiosInstance.get(`/transactions/admin/${id}`, {
+        responseType: "blob",
+      });
+
+      // Proses unduhan file
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `Transactions_Admin_${id}.xlsx`);
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    },
+    onSuccess: () => {
+      toast.success("File berhasil diunduh.");
+    },
+    onError: () => {
+      toast.error("Gagal mengunduh file.");
+    },
+  });
+}
+
 export interface WeeklyTransaction {
   date: string;
   day: string;
@@ -159,6 +206,9 @@ export {
   useTransaction,
   useGetTransactions,
   ExportTransactions,
+  useGetWeeklySummary,
+  useAverageByStudent,
+  ExportTransactionsByAdmin,
   useGetTransactionByStudent,
   ExportTransactionsByStudent,
   useGetTopBalance

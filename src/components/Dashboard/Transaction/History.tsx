@@ -15,7 +15,7 @@ const History = ({data}: {data: any}) => {
   });
 
   return (
-    <Card className="col-span-12 rounded-[10px] bg-white px-7.5 py-7.5 dark:bg-gray-dark xl:col-span-5">
+    <Card className="rounded-[10px] bg-white px-7.5 py-7.5 dark:bg-gray-dark xl:col-span-5">
       <CardHeader>
         <h5 className="h5">Riwayat Transaksi Akhir ini</h5>
       </CardHeader>

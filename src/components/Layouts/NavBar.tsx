@@ -46,7 +46,7 @@ const NavBar: React.FC = () => {
   }, []);
   return (
     <nav className="sticky top-0 z-999 flex w-full backdrop-blur">
-      <div className="container flex items-center justify-between border-b  border-stroke py-3.5 dark:border-stroke-dark">
+      <div className="container flex items-center justify-between border-b  border-stroke py-4 dark:border-stroke-dark">
         <div className="flex items-center gap-2 sm:gap-4">
           <Image
             src={Logo.src}

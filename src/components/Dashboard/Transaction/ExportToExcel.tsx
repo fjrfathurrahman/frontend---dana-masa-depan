@@ -29,7 +29,7 @@ const ExportToExcel = () => {
   };
 
   return (
-    <Button onClick={handleExport} color="warning" className="text-white font-medium">
+    <Button onPress={handleExport} color="warning" className="text-white font-medium">
       {icons.export}
       Export
     </Button>

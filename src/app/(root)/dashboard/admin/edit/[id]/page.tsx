@@ -3,8 +3,8 @@ import EditAdmin from "@/components/Dashboard/Admin/Edit";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata = {
-  title: "Next.js Edit Admin Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Edit Admin page for NextAdmin Dashboard Kit",
+  title: "Edit Admin | NextAdmin",
+  description: "This is Next.js Savings Dashboard page for NextAdmin Dashboard Kit",
 };
 
 export default function Page({ params }: { params: { id: string } }) {

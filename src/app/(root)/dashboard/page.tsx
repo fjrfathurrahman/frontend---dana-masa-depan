@@ -3,7 +3,7 @@ import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import SavingsDashboard from "@/components/Dashboard/SavingsDashboard";
 
 export const metadata: Metadata = {
-  title: "Next.js Savings Dashboard Page | NextAdmin - Next.js Dashboard Kit",
+  title: "Dashboard | NextAdmin",
   description: "This is Next.js Savings Dashboard page for NextAdmin Dashboard Kit",
 };
 

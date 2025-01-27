@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply relative z-1 bg-zinc-100 text-base font-normal text-dark-5 dark:bg-[#020D1A] dark:text-dark-6;
+    @apply min-h-screen relative z-1 bg-zinc-100 text-base font-normal text-dark-5 dark:bg-[#020D1A] dark:text-dark-6;
   }
 }
 
@@ -40,7 +40,7 @@
   }
 
   .p {
-    @apply text-sm leading-normal sm:text-base md:text-lg lg:text-xl text-pretty
+    @apply text-sm leading-normal sm:text-base md:text-lg lg:text-xl text-pretty leading-8
   }
 
   .btnSolid {

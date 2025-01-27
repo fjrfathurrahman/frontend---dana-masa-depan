@@ -6,8 +6,8 @@ import ModalTransaction from "@/components/Dashboard/Transaction/ModalTransactio
 import ExportToExcel from "@/components/Dashboard/Transaction/ExportToExcel";
 
 export const metadata: Metadata = {
-  title: "Next.js Transaction Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Profile page for NextAdmin Dashboard Kit",
+  title: "Transaksi | NextAdmin",
+  description: "This is Next.js Savings Dashboard page for NextAdmin Dashboard Kit",
 };
 
 export default function Transaction() {

@@ -5,8 +5,8 @@ import ModalAdd from "@/components/Dashboard/Admin/ModalAdd";
 import TableAdmin from "@/components/Dashboard/Admin/Table";
 
 export const metadata: Metadata = {
-  title: "Next.js Admin Page | NextAdmin - Next.js Dashboard Kit",
-  description: "This is Next.js Profile page for NextAdmin Dashboard Kit",
+  title: "Admin | NextAdmin",
+  description: "This is Next.js Savings Dashboard page for NextAdmin Dashboard Kit",
 };
 
 export default function Admin() {

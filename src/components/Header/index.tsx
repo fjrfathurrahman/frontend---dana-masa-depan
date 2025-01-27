@@ -2,6 +2,7 @@ import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownUser from "./DropdownUser";
 import Image from "next/image";
+import { formattedDateOnly } from "@/utils/formated";
 
 const Header = (props: { sidebarOpen: string | boolean | undefined; setSidebarOpen: (arg0: boolean) => void}) => {
   return (
@@ -62,7 +63,9 @@ const Header = (props: { sidebarOpen: string | boolean | undefined; setSidebarOp
             <h1 className="mb-0.5 text-heading-5 font-bold text-dark dark:text-white">
               Dashboard
             </h1>
-            <p className="font-medium">Next.js Admin Dashboard Solution</p>
+            <p className="font-medium">
+              {formattedDateOnly(new Date().toString())}
+            </p>
           </div>
         </div>
 

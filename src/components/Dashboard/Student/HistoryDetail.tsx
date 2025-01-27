@@ -1,13 +1,8 @@
 import CardHistory from "@/components/Card/CardHistory";
-import { icons } from "@/resource/icons";
-import { formatedCurrency, formattedDateOnly } from "@/utils/formated";
-import { Button, Card, CardBody, CardHeader, Divider } from "@heroui/react";
-import Image from "next/image";
-import React from "react";
 
 const HistoryDetail = ({ data }: { data: [] }) => {
   return (
-    <div className="relative z-30 xl:col-span-2 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card h-max">
+    <div className="w-full relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card h-max">
       <div className="p-6">
         <div className="flex items-center gap-2">
           <h6 className="h6">Riwayat Transaksi</h6>

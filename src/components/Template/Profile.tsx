@@ -9,16 +9,13 @@ interface Props {
       handleDownload: () => void;
       load: boolean;
     };
-    // edit: {
-    //   handleEdit: () => void;
-    //   status: string;
-    // }
   };
+  parent?: boolean;
   bio: {
-    name: string;
-    class: string;
-    photo: string;
-    phone: string;
+    name?: string;
+    class?: string;
+    photo?: string;
+    phone?: string;
     listData?: {
       label: string;
       value: string;
@@ -31,6 +28,7 @@ const Profile = ({
   actions: {
     download: { handleDownload, load },
   },
+  parent,
 }: Props) => {
   return (
     <div className="relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
@@ -116,15 +114,17 @@ const Profile = ({
 
         <Divider className="my-6" />
 
-        <div>
-          <h6>Informasi Orang Tua</h6>
+        {parent && (
+          <div>
+            <h6>Informasi Orang Tua</h6>
 
-          <div className="mt-4 flex h-24 items-center justify-center rounded-xl border-2 border-dashed">
-            <p className="text-small text-gray-6 dark:text-gray-4">
-              Fitur belum tersedia
-            </p>
+            <div className="mt-4 flex h-24 items-center justify-center rounded-xl border-2 border-dashed">
+              <p className="text-small text-gray-6 dark:text-gray-4">
+                Fitur belum tersedia
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -42,11 +42,10 @@ export default function RootLayout({
           <HeroUIProvider>
             <Toaster />
             <AppProgressBar
-              height="4px"
-              color="#00000"
-              options={{ showSpinner: true }}
+              height="6px"
+              color="#5750F1"
+              options={{ showSpinner: true, speed: 200 }}
               delay={300}
-              shallowRouting
             />
             {loading ? <Loader /> : children}
           </HeroUIProvider>
