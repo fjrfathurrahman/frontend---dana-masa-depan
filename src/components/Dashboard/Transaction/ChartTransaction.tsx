@@ -33,11 +33,8 @@ const ChartTransaction = ({data}: {data: any[]}) => {
   };
 
   const options = {
-    responsive: true,
+    // responsive: true,
     plugins: {
-      legend: {
-        position: "top" as const,
-      },
       title: {
         display: true,
         text: "Ringkasan Transaksi Minggu ini",
@@ -46,7 +43,7 @@ const ChartTransaction = ({data}: {data: any[]}) => {
   };
 
   return (
-    <Card className="col-span-12 rounded-[10px] bg-white px-7.5 pb-6 pt-7.5 dark:bg-gray-dark xl:col-span-7 h-max">
+    <Card className="col-span-12 rounded-[10px] bg-white px-7.5 pb-6 pt-7.5 dark:bg-gray-dark xl:col-span-7">
       <CardHeader>
         <h5 className="h5 mb-6">Transaksi Minggu ini</h5>
       </CardHeader>

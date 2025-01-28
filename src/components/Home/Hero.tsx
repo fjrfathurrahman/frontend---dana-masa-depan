@@ -15,14 +15,20 @@ const Hero = () => {
               </span>{" "}
               <br /> Anda dengan Mudah!
             </h2>
-            <p className="p leading-8">
+            <p className="p">
               Ciptakan rencana keuangan Anda dengan aman dan mudah. Website kami
               membantu Anda mengelola dan mengembangkan tabungan untuk mencapai
               tujuan finasial Anda✨
             </p>
             <div className="flex flex-col items-center gap-2 sm:flex-row">
               <button className="btnRoundedFull font-semibold">
-                <a href="http://https://wa.me/6285860118691" target="_blank" rel="noopener noreferrer">Gabung Sekarang</a>
+                <a
+                  href="http://https://wa.me/6285860118691"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Gabung Sekarang
+                </a>
               </button>
               <button className="btnOutline">
                 <a href="/search">Cari Nasabah</a>
@@ -36,8 +42,8 @@ const Hero = () => {
               alt="image"
               blurDataURL={hero.blurDataURL}
               quality={100}
-              width={470}
-              height={470}
+              width={500}
+              height={500}
             />
           </div>
         </div>

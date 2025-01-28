@@ -20,7 +20,7 @@ function useLoginAdmin() {
       localStorage.setItem('user', JSON.stringify(data.data.admin));
 
       router.push("/dashboard");
-      toast.success("Login berhasil!");
+      toast.success("Login berhasil!, mohon tunggu...");
     },
     onError: (e: AxiosError) => {
       const status = (e?.response?.data as { status: number }).status;

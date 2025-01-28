@@ -1,4 +1,5 @@
 import Contact from "@/components/Home/Contact";
+import Faq from "@/components/Home/Faq";
 import Features from "@/components/Home/Features";
 import Hero from "@/components/Home/Hero";
 import SignIn from "@/components/Home/SignIn";
@@ -17,7 +18,7 @@ export default function Home(): JSX.Element {
         <Hero/>
         {/* <Collaborators /> */}
         <Features />
-        {/* <Faq /> */}
+        <Faq />
         <SignIn/>
         <Contact />
       </Layout>

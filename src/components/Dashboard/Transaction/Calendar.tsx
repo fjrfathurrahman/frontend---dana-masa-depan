@@ -8,7 +8,7 @@ const Calendar = () => {
   let [date, setDate] = useState(today(getLocalTimeZone()));
   
   return (
-    <div className='col-span-3 flex justify-center h-max'>
+    <div className='col-span-12 md:col-span-6 xl:col-span-3 flex justify-center h-max'>
        <CalendarHero
         aria-label="Date Picker (Invalid on weekends)"
         value={date}

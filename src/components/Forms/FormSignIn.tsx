@@ -29,7 +29,7 @@ const FormSignIn = () => {
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <div className="rounded-large flex w-full max-w-xl flex-col gap-4 px-8 pb-10 pt-6">
+      <div className="rounded-large flex w-full max-w-xl flex-col gap-4 sm:px-8 pb-10 pt-6">
         <div>
           <h2 className="h3 mb-2">Sign In Admin</h2>
           <p className="p">

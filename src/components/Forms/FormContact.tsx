@@ -1,5 +1,6 @@
 import { Button, Input, Textarea } from "@heroui/react";
 import React from "react";
+import { toast } from "sonner";
 
 const FormContact = () => {
   return (
@@ -27,7 +28,7 @@ const FormContact = () => {
         placeholder="Hello, Saya mau bertanya..."
         variant="bordered"
       />
-      <Button fullWidth color="primary" type="submit">
+      <Button fullWidth color="primary" type="button" onPress={() => toast.info("Fitur belum tersedia")}>
         Kirim
       </Button>
     </form>

@@ -35,7 +35,7 @@ const Average = ({ data }: { data: any }) => {
   };
 
   return (
-    <div className="col-span-4 h-max rounded-[10px] bg-white p-8 shadow-1 dark:bg-gray-dark dark:shadow-card">
+    <div className="col-span-12 md:col-span-6 xl:col-span-4 h-max rounded-[10px] bg-white sm:p-8 shadow-1 dark:bg-gray-dark dark:shadow-card">
       <h5 className="h5 mb-6">Transaksi Rata Rata</h5>
       <Pie data={chartData.data} />
     </div>

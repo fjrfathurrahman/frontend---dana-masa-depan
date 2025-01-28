@@ -6,7 +6,7 @@ const TopBalances = (data: any) => {
   const balance = data.data.data.data;
 
   return (
-    <Card className="col-span-12 rounded-[10px] bg-white px-7.5 py-7.5 dark:bg-gray-dark xl:col-span-5">
+    <Card className="col-span-12 rounded-[10px] bg-white sm:px-7.5 sm:py-7.5 dark:bg-gray-dark xl:col-span-5">
       <CardHeader>
         <h5 className="h5">Top Siswa Sultan 😎</h5>
       </CardHeader>

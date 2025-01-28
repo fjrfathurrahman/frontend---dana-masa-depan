@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
 import Title from "../Titles/Title";
 import FormContact from "../Forms/FormContact";
+import Image from "next/image";
+import image from "/public/images/content/home.png";
 
 const Contact = () => {
   return (
@@ -13,6 +16,16 @@ const Contact = () => {
               desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
             />
             <FormContact />
+          </div>
+
+          <div className="flex cursor-pointer items-center justify-center duration-300 hover:scale-110">
+            <Image
+              src={image.src}
+              alt="image"
+              width={250}
+              height={250}
+              blurDataURL={image.blurDataURL}
+            />
           </div>
         </div>
       </div>
