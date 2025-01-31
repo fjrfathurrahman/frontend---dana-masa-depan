@@ -24,6 +24,11 @@ const menuGroups = [
       },
       {
         icon: icons.admins,
+        label: "Pendaftaran Siswa",
+        route: "/dashboard/registration ",
+      },
+      {
+        icon: icons.admins,
         label: "Admin",
         route: "/dashboard/admin",
       },

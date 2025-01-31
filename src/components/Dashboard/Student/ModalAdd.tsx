@@ -79,7 +79,7 @@ const ModalAdd = () => {
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <ModalHeader className="text-dark dark:text-white">
-                  Menambah Admin Baru
+                  Menambah Siswa Baru
                 </ModalHeader>
                 <ModalBody className="grid grid-cols-2 gap-y-4">
                   <Input

@@ -4,8 +4,9 @@ import "jsvectormap/dist/css/jsvectormap.css";
 import "flatpickr/dist/flatpickr.min.css";
 import "@/css/satoshi.css";
 import "@/css/style.css";
-import { useEffect, useState } from "react";
+
 import Loader from "@/components/common/Loader";
+import { useEffect, useState } from "react";
 import { HeroUIProvider } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Poppins } from "next/font/google";
@@ -20,9 +21,7 @@ const font = Poppins({
   variable: "--font-inter",
 });
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 

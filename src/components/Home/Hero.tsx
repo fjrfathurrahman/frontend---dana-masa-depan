@@ -22,11 +22,7 @@ const Hero = () => {
             </p>
             <div className="flex flex-col items-center gap-2 sm:flex-row">
               <button className="btnRoundedFull font-semibold">
-                <a
-                  href="http://https://wa.me/6285860118691"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="register">
                   Gabung Sekarang
                 </a>
               </button>

@@ -17,7 +17,7 @@ const Overview = ({ data }: { data: any }) => {
           </CardHeader>
           <CardBody>
             <div>
-              <h4 className="h3">{data?.students_count ?? 0}</h4>
+              <h4 className="h4">{data?.students_count ?? 0}</h4>
               <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Siswa Menabung
               </span>

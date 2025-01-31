@@ -23,13 +23,7 @@ interface Props {
   };
 }
 
-const Profile = ({
-  bio,
-  actions: {
-    download: { handleDownload, load },
-  },
-  parent,
-}: Props) => {
+const Profile = ({ bio, actions: { download: { handleDownload, load }, }, parent }: Props) => {
   return (
     <div className="relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
       <Image

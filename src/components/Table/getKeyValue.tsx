@@ -1,3 +1,4 @@
+import { useUpdateStatus } from "@/hooks/students/useStudent";
 import { icons } from "@/resource/icons";
 import { formatedCurrency } from "@/utils/formated";
 import { Button, Chip, Image } from "@heroui/react";
@@ -15,15 +16,14 @@ type TProps = {
   };
 };
 
-export default function GetKeyValue({
-  columnKey,
-  index,
-  item,
-  type,
-  actions,
-}: TProps) {
+export default function GetKeyValue({ columnKey, index, item, type, actions }: TProps) {
+  const { mutate } = useUpdateStatus();
   const getNestedValue = (obj: any, key: string) => {
     return key.split(".").reduce((acc, part) => acc?.[part], obj) ?? "-";
+  };
+
+  const handleStatusChange = (id: number, status: string) => {
+    mutate({id, status});
   };
 
   switch (columnKey) {
@@ -70,6 +70,22 @@ export default function GetKeyValue({
           variant="flat"
         >
           {item.type}
+        </Chip>
+      );
+
+    case "status":
+      return (
+        <Chip
+          variant="flat"
+          color={
+            item.status === "pending"
+              ? "warning"
+              : item.status === "rejected"
+                ? "danger"
+                : "success"
+          }
+        >
+          {item.status}
         </Chip>
       );
 
@@ -121,6 +137,29 @@ export default function GetKeyValue({
           </Button>
         </div>
       );
+
+    case "changeStatus":
+      return (
+        <div className="flex flex-col gap-2">
+          <Button
+            onPress={() => handleStatusChange(item.id, "rejected")}
+            color="danger"
+            variant="flat"
+            isDisabled={item.status === "rejected"}
+          >
+            Rejected
+          </Button>
+          <Button
+            onPress={() => handleStatusChange(item.id, "approved")}
+            color="success"
+            variant="flat"
+            isDisabled={item.status === "approved"}
+          >
+            Approved
+          </Button>
+        </div>
+      );
+
     default:
       return (
         <div

@@ -15,7 +15,7 @@ interface ITable {
   data: any;
   status: string;
   columns: { key: string; label: string }[];
-  type: 'student' | 'transaction' | 'admin'
+  type: "student" | "transaction" | "admin";
   actions?: {
     handleDelete: (id: number) => void;
     handleView: () => void;
@@ -41,7 +41,7 @@ const TableData: React.FC<ITable> = ({ data, type, status, columns, actions }) =
         aria-label="Table"
         align="center"
         classNames={{
-          base: "rounded-xl bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card",
+          base: "rounded-xl bg-white pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card",
         }}
       >
         <TableHeader columns={columns}>
@@ -54,14 +54,15 @@ const TableData: React.FC<ITable> = ({ data, type, status, columns, actions }) =
 
         <TableBody
           items={paginatedData}
-          emptyContent={
-            status === "error" ? "Terjadi kesalahan pada server" : status === "loading" ? "Loading..." : "Data tidak ditemukan"
-          }
+          emptyContent={ status === "error" ? "Terjadi kesalahan pada server" : status === "loading" ? "Loading..." : paginatedData.length === 0 ? "Data tidak ditemukan" : "" }
         >
           {paginatedData?.map((item: any, index: number) => (
             <TableRow key={item.id} className="overflow-x-auto">
               {(key) => (
-                <TableCell key={key} className={"w-auto text-ellipsis text-wrap py-2"}>
+                <TableCell
+                  key={key}
+                  className={"w-auto text-ellipsis text-wrap py-2"}
+                >
                   {
                     <GetKeyValue
                       columnKey={key as string}
@@ -79,7 +80,7 @@ const TableData: React.FC<ITable> = ({ data, type, status, columns, actions }) =
       </Table>
 
       <div className="flex justify-center">
-        {paginatedData && paginatedData.length > itemsPerPage && (
+        {paginatedData && (
           <Pagination
             page={currentPage}
             onChange={handlePageChange}
