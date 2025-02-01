@@ -33,7 +33,7 @@ const Faq = () => {
       <Accordion defaultExpandedKeys={["2"]} variant="light">
         {dFaq.map((item) => (
           <AccordionItem
-            classNames={{title: "h3 text-2xl", content: "p text-xl"}}
+            classNames={{ title: "h4 text-xl", content: "leading-6 xl:leading-5 tracking-wide xl:text-lg"}}
             key={item.id}
             aria-label={`FAQ ${item.id}`}
             title={item.title}

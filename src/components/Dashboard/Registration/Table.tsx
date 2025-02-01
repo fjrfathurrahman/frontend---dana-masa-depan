@@ -6,7 +6,7 @@ import { Select, SelectItem } from "@heroui/react";
 import { useState } from "react";
 
 const TableRegistration = () => {
-  const [filterStatus, setFilterStatus] = useState("pending");
+  const [filterStatus, setFilterStatus] = useState('');
   const { data, status } = useGetStudentByStatus(filterStatus);
   const students = data?.data.data;
 
@@ -17,7 +17,7 @@ const TableRegistration = () => {
 
   return (
     <>  
-      <Select className="max-w-xs" variant="flat" label="Status" value={filterStatus} onChange={handleFilterChange} placeholder="Pilih Status" defaultSelectedKeys={[filterStatus]}>
+      <Select className="max-w-xs" variant="flat" label="Status" value={filterStatus} onChange={handleFilterChange} placeholder="Pilih Status" >
         {[{ key: "pending", label: "Pending" }, { key: "approved", label: "Approved" }, { key: "rejected", label: "Rejected" }].map((item) => (
           <SelectItem key={item.key} color="primary">{item.label}</SelectItem>
         ))}

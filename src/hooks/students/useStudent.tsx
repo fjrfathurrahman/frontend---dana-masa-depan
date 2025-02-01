@@ -1,4 +1,6 @@
 import { axiosInstance } from "@/lib/axios";
+import { TLogin } from "@/lib/Schema";
+import { AxiosError } from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { toast } from "sonner";
 
@@ -27,7 +29,7 @@ function useGetStudent(id?: string | number) {
  * @param {('pending' | 'approved' | 'rejected' | string)} status - The status of the students to retrieve.
  * @returns {UseQueryResult} - The result of the query, including status, data, and error information.
  */
-function useGetStudentByStatus(status: 'pending' | 'approved' | 'rejected' | string) {
+function useGetStudentByStatus(status?: string | null) {
   return useQuery({
     queryKey: ["students", status],
     queryFn: async () => axiosInstance.get(`/students/by-status?status=${status}`),
@@ -84,7 +86,7 @@ function useAddStudent() {
         queryKey: ["students"],
         refetchActive: true,
       });
-      toast.success("Action berhasil!");
+      toast.success("Action berhasil!, Mohon tunggu keputusan admin");
     },
     onError: () => {
       toast.error("Terjadi kesalahan");
@@ -115,6 +117,7 @@ function useUpdateStudent(id: number | string) {
     },
   });
 }
+
 /**
  * * a custom hook to delete a student
  *
@@ -135,6 +138,11 @@ function useDeleteStudent() {
   });
 }
 
+/**
+ * A custom hook to export all student data to an Excel file.
+ *
+ * @returns {UseMutationResult} - The result of the mutation, including status and functions
+ */
 function ExportStudents() {
   return useMutation({
     mutationFn: async () => {
@@ -162,12 +170,39 @@ function ExportStudents() {
   });
 }
 
+/**
+ * * A custom hook to login a student.
+ *
+ * @returns {UseMutationResult} - The result of the mutation, including status and functions
+ */
+function useLoginStudent() {
+  return useMutation({
+    mutationFn: async (data: TLogin) =>
+      axiosInstance.post("/students/login", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
+    onSuccess: () => {
+      toast.success("Login berhasil, mohon tunggu...");
+    },
+    onError: (e: AxiosError) => {
+      const status = (e?.response?.data as { status: number }).status;
+      const statusText = status === 404 ? "User tidak ditemukan" : status === 401 ? "Password salah" : status === 403 ? 'User belum diverifikasi admin' : "Terjadi kesalahan";
+
+      toast.error(statusText);
+    },
+  });
+}
+
+
 export {
   useGetStudent,
   useAddStudent,
   useUpdateStudent,
   useDeleteStudent,
   useGetStudentByStatus,
+  useLoginStudent,
   ExportStudents,
   useUpdateStatus
 };

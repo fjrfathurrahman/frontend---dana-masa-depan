@@ -1,4 +1,5 @@
-import FormRegister from "@/components/Home/Forms/Register";
+import FormRegister from "@/components/Forms/FormRegister";
+import Faq from "@/components/Home/Faq";
 import Layout from "@/components/Layouts/Layout";
 
 export const metadata = {
@@ -10,8 +11,9 @@ export const metadata = {
 export default function Register() {
   return (
     <Layout>
-      <main className="my-8 grid grid-cols-1">
+      <main className="py-8">
         <FormRegister />
+        <Faq/>
       </main>
     </Layout>
   );

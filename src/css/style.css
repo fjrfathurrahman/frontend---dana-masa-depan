@@ -12,6 +12,10 @@
   body {
     @apply min-h-screen relative z-1 bg-zinc-100 text-base font-normal text-dark-5 dark:bg-[#020D1A] dark:text-dark-6;
   }
+
+  p {
+    @apply leading-5 tracking-wide xl:text-lg
+  }
 }
 
 @layer components {

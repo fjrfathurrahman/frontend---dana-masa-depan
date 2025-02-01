@@ -2,8 +2,15 @@
 
 import { useAddStudent } from "@/hooks/students/useStudent";
 import { AddStudentSchema, TAddStudent } from "@/lib/Schema";
+import { icons } from "@/resource/icons";
 import { Button } from "@heroui/button";
-import { Input, InputVariantProps, Select, SelectItem, Textarea } from "@heroui/react";
+import {
+  Input,
+  InputVariantProps,
+  Select,
+  SelectItem,
+  Textarea,
+} from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -26,7 +33,7 @@ const optionsSelect = {
 
 const FormRegister = () => {
   const { mutate, isLoading } = useAddStudent();
-  const { handleSubmit, register, formState } = useForm<TAddStudent>({
+  const { handleSubmit, register, formState, reset } = useForm<TAddStudent>({
     resolver: zodResolver(AddStudentSchema),
     mode: "onChange",
   });
@@ -46,18 +53,39 @@ const FormRegister = () => {
     if (data.photo) formData.append("photo", data.photo[0]);
 
     console.log(data);
-    mutate(formData);
+    mutate(formData, {
+      onSuccess: () => {
+        reset();
+      },
+    });
   };
 
   const defaultStyle: InputVariantProps = {
     labelPlacement: "outside",
     variant: "bordered",
-  }
+  };
 
   return (
-    <main>
+    <>
+      <button
+        className="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white"
+        onClick={() => window.history.back()}
+      >
+        {icons.back}
+      </button>
+
+      <div className="mb-12">
+        <h3 className="h3 mb-4">Daftar Lalu Mulai Menabung</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          distinctio optio modi reiciendis vitae non dolorum. At magni vitae
+          quidem aliquid, neque quos est dolor suscipit consequatur unde animi
+          in?
+        </p>
+      </div>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="mb-6 grid grid-cols-3 gap-4">
           <Input
             label="Nama Anda"
             placeholder="Masukan Nama Siswa"
@@ -75,7 +103,7 @@ const FormRegister = () => {
           <Select
             label="Kelas Anda"
             placeholder="Pilih Kelas Siswa"
-            {...defaultStyle}            
+            {...defaultStyle}
             isInvalid={Boolean(formState.errors.class)}
             errorMessage={formState.errors.class?.message}
             {...register("class")}
@@ -89,7 +117,7 @@ const FormRegister = () => {
           <Select
             label="Jurusan Anda"
             placeholder="Pilih Jurusan "
-            {...defaultStyle}            
+            {...defaultStyle}
             isInvalid={Boolean(formState.errors.major)}
             errorMessage={formState.errors.major?.message}
             {...register("major")}
@@ -129,14 +157,14 @@ const FormRegister = () => {
             {...defaultStyle}
             {...register("password")}
           />
-          {/* <Input
+          <Input
             label="Konfirmasi Password"
             placeholder="Masukan Konfirmasi Password Anda"
             type="password"
             isInvalid={Boolean(formState.errors.confirmPassword)}
             {...defaultStyle}
             {...register("confirmPassword")}
-          /> */}
+          />
           <Input
             label="No Handphone"
             placeholder="Masukan No Handphone Anda"
@@ -170,12 +198,13 @@ const FormRegister = () => {
           type="submit"
           isLoading={isLoading}
           isDisabled={isLoading}
+          size="lg"
           fullWidth
         >
           Submit
         </Button>
       </form>
-    </main>
+    </>
   );
 };
 

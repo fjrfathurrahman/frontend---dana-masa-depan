@@ -178,15 +178,15 @@ export const AddStudentSchema = z
       .string()
       .min(8, { message: "Password minimal 8 karakter" })
       .max(128, { message: "Password maksimal 128 karakter" }),
-    // confirmPassword: z
-    //   .string()
-    //   .min(8, { message: "Konfirmasi password minimal 8 karakter" })
-    //   .max(128, { message: "Konfirmasi password maksimal 128 karakter" }),
+    confirmPassword: z
+      .string()
+      .min(8, { message: "Konfirmasi password minimal 8 karakter" })
+      .max(128, { message: "Konfirmasi password maksimal 128 karakter" }),
   })
-  // .refine((data) => data.password === data.confirmPassword, {
-  //   message: "Konfirmasi password tidak sesuai dengan password",
-  //   path: ["confirmPassword"],
-  // });
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Konfirmasi password tidak sesuai dengan password",
+    path: ["confirmPassword"],
+  });
 
 export type TAddStudent = z.infer<typeof AddStudentSchema>;
 

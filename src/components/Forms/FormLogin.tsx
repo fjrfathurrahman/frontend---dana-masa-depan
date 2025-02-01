@@ -1,23 +1,19 @@
 "use client";
 
 import React from "react";
-import { Button, Input, Checkbox, Link, Form } from "@heroui/react";
+import { Button, Input, Checkbox, Link } from "@heroui/react";
 import { icons } from "@/resource/icons";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { loginSchema, TLogin } from "@/lib/Schema";
-import { useLoginAdmin } from "@/hooks/admins/useAdmin";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLoginStudent } from "@/hooks/students/useStudent";
 
 
-/**
- * * FormSignIn is a React functional component that renders a sign-in form for administrators.
- * The component also manages loading state during the login process.
- */
-const FormSignIn = () => {
+const FormLogin = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const { isLoading, mutate } = useLoginAdmin();
+  const { isLoading, mutate } = useLoginStudent();
   const methods = useForm<TLogin>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
@@ -84,4 +80,4 @@ const FormSignIn = () => {
   );
 };
 
-export default FormSignIn;
+export default FormLogin;

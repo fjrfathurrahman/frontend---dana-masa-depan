@@ -1,6 +1,6 @@
 import { IoFlash, IoLocationOutline, IoSettingsOutline  } from 'react-icons/io5';
 import { FiEdit, FiEye, FiEyeOff } from "react-icons/fi";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiDeleteBin5Line, RiUserAddLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { TbUserCog, TbCoin  } from "react-icons/tb";
@@ -16,6 +16,7 @@ export const icons = {
   dashboard: <RxDashboard size={24} />,
   admins: <TbUserCog size={24} />,
   students: <HiOutlineUserGroup  size={24} />,
+  registration: <RiUserAddLine size={24} />,
   profile: <HiOutlineUser size={24} />,
   transaction: <GrTransaction size={22} />,
   trendUp: <HiTrendingUp size={24} />,

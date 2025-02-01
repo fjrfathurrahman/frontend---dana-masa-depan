@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import DarkModeSwitcher from "../Header/DarkModeSwitcher";
 import Logo from "/public/images/favicon.ico";
 import Image from "next/image";
+import { Button } from "@heroui/react";
 
 const MenuItem = [
   {
@@ -46,7 +47,7 @@ const NavBar: React.FC = () => {
   }, []);
   return (
     <nav className="sticky top-0 z-999 flex w-full backdrop-blur">
-      <div className="container flex items-center justify-between border-b  border-stroke py-4 dark:border-stroke-dark">
+      <div className="container flex items-center justify-between border-b  border-stroke py-4.5 dark:border-stroke-dark">
         <div className="flex items-center gap-2 sm:gap-4">
           <Image
             src={Logo.src}
@@ -67,6 +68,7 @@ const NavBar: React.FC = () => {
         </div>
         <ul className="flex items-center gap-2 2xsm:gap-4">
           <DarkModeSwitcher />
+          <Button color="primary" as='a' href="/signIn">Sign In</Button>
         </ul>
       </div>
     </nav>
