@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button } from "@heroui/react";
 import { toast } from "sonner";
 import { icons } from "@/resource/icons";
+import { usePathname } from "next/navigation";
 
 const MenuItem = [
   {
@@ -33,6 +34,7 @@ const MenuItem = [
 
 const NavBar = () => {
   const [activeHash, setActiveHash] = useState<string>("");
+  const pathName = usePathname();
 
   useEffect(() => {
     const updateHash = () => {
@@ -54,9 +56,15 @@ const NavBar = () => {
     if (isLogin) {
       window.location.href = "/profile";
     } else {
-      toast.info('Silahkan login terlebih dahulu');
+      toast.info("Silahkan login terlebih dahulu");
     }
-  }
+  };
+
+  const handleLogout = () => {
+    toast.success("Logout berhasil, mohon tunggu...");
+    localStorage.removeItem("student");
+    window.location.href = "/";
+  };
 
   return (
     <nav className="sticky top-0 z-999 flex w-full backdrop-blur">
@@ -69,21 +77,42 @@ const NavBar = () => {
             height={55}
             quality={100}
             blurDataURL={Logo.blurDataURL}
-            />
-            <span className="font-bold text-xl tracking-wide text-dark dark:text-white hidden sm:block md:hidden lg:block">Dana Masa Depan</span>
+          />
+          <span className="hidden text-xl font-bold tracking-wide text-dark dark:text-white sm:block md:hidden lg:block">
+            Dana Masa Depan
+          </span>
         </div>
         <div className="hidden items-center gap-4 md:flex">
           {MenuItem.map((item) => (
-            <a key={item.name} href={item.hash} className={`text-dark dark:text-white font-semibold px-3.5 py-1.5 rounded-xl duration-700 ease-in-out ${activeHash === item.hash ? "bg-primary/25 text-primary" : ""}`}>
+            <a
+              key={item.name}
+              href={item.hash}
+              className={`rounded-xl px-3.5 py-1.5 font-semibold text-dark duration-700 ease-in-out dark:text-white ${activeHash === item.hash ? "bg-primary/25 text-primary" : ""}`}
+            >
               {item.name}
             </a>
           ))}
         </div>
         <ul className="flex items-center gap-2 2xsm:gap-4">
           <DarkModeSwitcher />
-          <Button color="primary" onPress={() => handleProfileClick()} isIconOnly radius="full">
+          <Button
+            color="primary"
+            onPress={() => handleProfileClick()}
+            isIconOnly
+            radius="full"
+          >
             {icons.user}
           </Button>
+          {pathName === "/profile" && (
+            <Button
+              color="danger"
+              onPress={() => handleLogout()}
+              isIconOnly
+              radius="full"
+            >
+              {icons.logout}
+            </Button>
+          )}
         </ul>
       </div>
     </nav>

@@ -34,7 +34,7 @@ const Overview = ({ data }: { data: any }) => {
           <CardBody>
             <div>
               <h4 className="h4 line-clamp-1">
-                {data?.total_balance ? formatedCurrency(data.total_balance) : "0,00"}
+                {data?.total_balance ? formatedCurrency(parseFloat(data.total_balance)) : "0,00"}
               </h4>
               <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Siswa Menabung
@@ -52,7 +52,7 @@ const Overview = ({ data }: { data: any }) => {
           <CardBody>
             <div>
               <h4 className="h4 line-clamp-1">
-                {data?.total_deposit ? formatedCurrency(data.total_deposit) : "0,00"}
+                {data?.total_deposit ? formatedCurrency(parseFloat(data.total_deposit)) : "0,00"}
               </h4>
               <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Deposit
@@ -70,7 +70,7 @@ const Overview = ({ data }: { data: any }) => {
           <CardBody>
             <div>
               <h4 className="h4 line-clamp-1">
-                {data?.total_withdrawal ? formatedCurrency(data.total_withdrawal) : "0,00"}
+                {data?.total_withdrawal ? formatedCurrency(parseFloat(data.total_withdrawal)) : "0,00"}
               </h4>
               <span className="text-body-sm font-medium line-clamp-3 mt-1.5">
                 Jumlah Seluruh Withdraw

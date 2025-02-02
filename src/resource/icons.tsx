@@ -11,6 +11,7 @@ import { PiExportBold } from "react-icons/pi";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa6";
 import { LuFileSpreadsheet, LuMessageCircle } from "react-icons/lu";
 import { IoIosArrowBack } from "react-icons/io";
+import { MdLogout } from "react-icons/md";
 
 export const icons = {
   dashboard: <RxDashboard size={24} />,
@@ -36,5 +37,6 @@ export const icons = {
   exportExcel: <LuFileSpreadsheet size={22} />,
   message: <LuMessageCircle size={22} />,
   back: <IoIosArrowBack size={22} />,
-  user: <RiUser3Line size={22} />
+  user: <RiUser3Line size={22} />,
+  logout: <MdLogout size={22} />
 };

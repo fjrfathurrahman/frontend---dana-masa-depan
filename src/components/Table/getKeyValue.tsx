@@ -47,7 +47,7 @@ export default function GetKeyValue({ columnKey, index, item, type, actions }: T
     case "amount":
       return (
         <Chip startContent={icons.coin} color="warning" variant="flat">
-          {formatedCurrency(getNestedValue(item, columnKey))}
+          {formatedCurrency(parseFloat(item.amount))}
         </Chip>
       );
 
@@ -89,19 +89,19 @@ export default function GetKeyValue({ columnKey, index, item, type, actions }: T
         </Chip>
       );
 
-    case "view":
-      return (
-        <Button
-          isIconOnly
-          variant="flat"
-          color="primary"
-          as={Link}
-          href={`/search/student/detail/${item.id}`}
-          type="button"
-        >
-          {icons.eye}
-        </Button>
-      );
+    // case "view":
+    //   return (
+    //     <Button
+    //       isIconOnly
+    //       variant="flat"
+    //       color="primary"
+    //       as={Link}
+    //       href={`/search/student/detail/${item.id}`}
+    //       type="button"
+    //     >
+    //       {icons.eye}
+    //     </Button>
+    //   );
 
     case "actions":
       return (

@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
+import { AxiosError } from "axios";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
 import * as XLSX from "xlsx";
@@ -15,8 +16,10 @@ function useTransaction() {
     onSuccess: () => {
       toast.success("Transaksi berhasil ditambahkan.");
     },
-    onError: () => {
-      toast.error("Terjadi kesalahan saat menambahkan transaksi.");
+    onError: (e: AxiosError) => {
+      const status = (e?.response?.data as { status: number }).status;
+
+      status === 403 ? toast.error("Akun belum diverifikasi admin") : toast.error("Terjadi kesalahan saat menambahkan transaksi.");
     },
   });
 }

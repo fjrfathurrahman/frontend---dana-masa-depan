@@ -49,7 +49,6 @@ const Search = () => {
             { key: "email", label: "Email" },
             { key: "class", label: "Kelas" },
             { key: "major", label: "Jurusan" },
-            { key: "view", label: "Action" },
           ]}
         />
       </div>
