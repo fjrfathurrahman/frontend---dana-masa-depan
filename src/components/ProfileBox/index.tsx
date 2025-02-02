@@ -14,7 +14,7 @@ const ProfileBox = () => {
 
   // Load user ID from localStorage
   useEffect(() => {
-    const userData = localStorage.getItem("user");
+    const userData = localStorage.getItem("admin");
     if (userData) {
       const parsedUser = JSON.parse(userData);
       setUser(parsedUser.id);

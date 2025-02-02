@@ -11,7 +11,7 @@ function formatedCurrency(value: number) {
 }
 
 function formattedDate(value: string): string {
-  const now = moment(); // Waktu saat ini
+  const now = moment(); 
   const inputTime = moment(value); 
   const duration = moment.duration(now.diff(inputTime));
   
@@ -22,7 +22,7 @@ function formattedDate(value: string): string {
   } else if (duration.asHours() < 24) {
     return `${Math.floor(duration.asHours())} jam yang lalu`;
   } else if (duration.asDays() < 2) {
-    return `Kemarin, ${inputTime.format("HH:mm")}`;
+    return `Kemarin, ${inputTime.format("dddd D MMM")}`;
   } else {
     return inputTime.format("dddd, D MMM"); 
   }

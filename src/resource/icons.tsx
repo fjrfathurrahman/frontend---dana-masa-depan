@@ -1,6 +1,6 @@
 import { IoFlash, IoLocationOutline, IoSettingsOutline  } from 'react-icons/io5';
 import { FiEdit, FiEye, FiEyeOff } from "react-icons/fi";
-import { RiDeleteBin5Line, RiUserAddLine } from "react-icons/ri";
+import { RiUser3Line, RiDeleteBin5Line, RiUserAddLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { TbUserCog, TbCoin  } from "react-icons/tb";
@@ -35,6 +35,6 @@ export const icons = {
   settings: <IoSettingsOutline size={22} />,
   exportExcel: <LuFileSpreadsheet size={22} />,
   message: <LuMessageCircle size={22} />,
-  back: <IoIosArrowBack size={22} />
-}
-;
+  back: <IoIosArrowBack size={22} />,
+  user: <RiUser3Line size={22} />
+};

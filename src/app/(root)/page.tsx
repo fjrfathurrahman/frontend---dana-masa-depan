@@ -18,9 +18,9 @@ export default function Home(): JSX.Element {
         <Hero/>
         {/* <Collaborators /> */}
         <Features />
-        <Faq />
         <SignIn/>
         <Contact />
+        <Faq />
       </Layout>
     </>
   );

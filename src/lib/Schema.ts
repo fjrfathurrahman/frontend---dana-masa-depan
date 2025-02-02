@@ -11,6 +11,7 @@ const ACCEPTED_IMAGE_TYPES = [
 export const loginSchema = z.object({
   email: z.string().email("Email tidak valid"),
   password: z.string().min(8, "Password minimal 8 karakter"),
+  role: z.enum(["admin", "student"]),
 });
 
 export type TLogin = z.infer<typeof loginSchema>;

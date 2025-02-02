@@ -33,7 +33,7 @@ type Props = {
     role: string;
   };
   type: string;
-  amount: number;
+  amount: number | string;
   created_at: string;
   updated_at: string;
 };
@@ -53,7 +53,7 @@ const CardHistory: React.FC<Props> = (props) => {
                 >
                   {props.type === "deposit" ? icons.trendUp : icons.trendDown}
                 </Button>
-                <h5 className="h5">{formatedCurrency(props?.amount)}</h5>
+                <h5 className="h5">{formatedCurrency(parseFloat(props?.amount as string ?? 0))}</h5>
               </CardHeader>
               <Divider />
               <CardBody>
@@ -124,7 +124,7 @@ const CardHistory: React.FC<Props> = (props) => {
             <Divider />
             <ul className="list-disc">
               <li>Type: {props.type}</li>
-              <li>Jumlah: {formatedCurrency(props.amount)}</li>
+              <li>Jumlah: {formatedCurrency(parseFloat(props?.amount as string ?? 0))}</li>
               <li>Dibuat: {formattedDate(props.created_at)}</li>
             </ul>
           </div>

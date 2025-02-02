@@ -67,13 +67,6 @@ const FormRegister = () => {
 
   return (
     <>
-      <button
-        className="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white"
-        onClick={() => window.history.back()}
-      >
-        {icons.back}
-      </button>
-
       <div className="mb-12">
         <h3 className="h3 mb-4">Daftar Lalu Mulai Menabung</h3>
         <p>

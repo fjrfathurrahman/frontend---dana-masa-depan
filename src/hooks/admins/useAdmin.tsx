@@ -15,7 +15,7 @@ function useLoginAdmin() {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: async (data: TLogin) => axiosInstance.post("/admins/login", data),
+    mutationFn: async (data: FormData) => axiosInstance.post("/admins/login", data),
     onSuccess: (data) => {
       localStorage.setItem('user', JSON.stringify(data.data.admin));
 

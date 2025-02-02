@@ -1,13 +1,20 @@
 "use client";
 
 import React from "react";
-import { Button, Input, Checkbox, Link, Form } from "@heroui/react";
+import {
+  Button,
+  Input,
+  Checkbox,
+  Link,
+  Form,
+  Select,
+  SelectItem,
+} from "@heroui/react";
 import { icons } from "@/resource/icons";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { loginSchema, TLogin } from "@/lib/Schema";
-import { useLoginAdmin } from "@/hooks/admins/useAdmin";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { useLogin } from "@/hooks/useAuth";
 
 /**
  * * FormSignIn is a React functional component that renders a sign-in form for administrators.
@@ -17,28 +24,35 @@ const FormSignIn = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const { isLoading, mutate } = useLoginAdmin();
+  const { isLoading, mutate } = useLogin();
   const methods = useForm<TLogin>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
   });
 
-  const onSubmit = (data: TLogin) => {
-    mutate(data);
+  const onSubmit: SubmitHandler<TLogin> = (data) => {
+    const formData = new FormData();
+
+    mutate({
+      email: data.email,
+      password: data.password,
+      role: data.role,
+    });
   };
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <div className="rounded-large flex w-full max-w-xl flex-col gap-4 sm:px-8 pb-10 pt-6">
+      <div className="flex w-full max-w-xl flex-col gap-4 rounded-large pb-10 pt-6 sm:px-8">
         <div>
-          <h4 className="h4 mb-2">Sign In Admin</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+          <h4 className="h4 mb-2">Sign In Akun Anda</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
-        
+
         <FormProvider {...methods}>
-          <form className="mt-4 flex flex-col gap-4" onSubmit={methods.handleSubmit(onSubmit)}>
+          <form
+            className="mt-4 flex flex-col gap-4"
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
             <Input
               isRequired
               label="Email"
@@ -66,6 +80,19 @@ const FormSignIn = () => {
               errorMessage={methods.formState.errors.password?.message}
               {...methods.register("password")}
             />
+            <Select
+              label="Role"
+              placeholder="Pilih Role Anda"
+              variant="bordered"
+              labelPlacement="outside"
+              isInvalid={Boolean(methods.formState.errors.role?.message)}
+              errorMessage={methods.formState.errors.role?.message}
+              {...methods.register("role")}
+            >
+              {[{ key: "admin", label: "Admin" },{ key: "student", label: "Siswa" }].map((item) => (
+                <SelectItem key={item.key}>{item.label}</SelectItem>
+              ))}
+            </Select>
             <div className="flex w-full items-center justify-between px-1 py-2">
               <Checkbox defaultSelected name="remember" size="sm">
                 Remember me
@@ -74,7 +101,13 @@ const FormSignIn = () => {
                 Forgot password?
               </Link>
             </div>
-            <Button fullWidth color="primary" type="submit" isLoading={isLoading} isDisabled={isLoading}>
+            <Button
+              fullWidth
+              color="primary"
+              type="submit"
+              isLoading={isLoading}
+              isDisabled={isLoading}
+            >
               Log In
             </Button>
           </form>

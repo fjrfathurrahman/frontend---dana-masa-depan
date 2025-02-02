@@ -44,13 +44,11 @@ function useGetTransactions() {
  * @param {string} id - The student ID for which transactions are retrieved.
  * @returns {UseQueryResult} - The result of the query, including status, data, and error information.
  */
-function useGetTransactionByStudent(id: string) {
+function useGetTransactionByStudent(id: string, type?: string) {
   return useQuery({
-    queryFn: async () =>
-      await axiosInstance.get(`transactions/by-student/${id}`),
-    queryKey: ["transactions", id],
+    queryFn: async () => await axiosInstance.get(`transactions/by-student/${id}?type=${type}`),
+    queryKey: ["transactions", id, type],
     staleTime: 10000,
-    // onSuccess: (data) => console.log(data),
     onError: () => {
       toast.error("Terjadi kesalahan");
     },

@@ -21,17 +21,18 @@ interface Props {
       value: string;
     }[];
   };
+  className?: string;
 }
 
-const Profile = ({ bio, actions: { download: { handleDownload, load }, }, parent }: Props) => {
+const Profile = ({ className = 'xl:col-span-4', bio, actions: { download: { handleDownload, load }, }, parent }: Props) => {
   return (
-    <div className="relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
+    <div className={`${className} relative z-30 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card`}>
       <Image
         src="/images/cover/bg15.png"
         alt="image"
         width={970}
         radius="none"
-        className="h-60 min-w-full rounded-tl-[10px] rounded-tr-[10px] object-cover object-center"
+        className="h-32 sm:h-60 min-w-full rounded-tl-[10px] rounded-tr-[10px] object-cover object-center"
         style={{ width: "auto" }}
       />
 
@@ -39,7 +40,7 @@ const Profile = ({ bio, actions: { download: { handleDownload, load }, }, parent
         {bio.photo && (
           <Avatar
             src={`http://localhost:8000/storage/${bio?.photo}`}
-            className="h-24 w-24 rounded-full border-4 border-white object-cover"
+            className="h-20 w-20 sm:h-24 sm:w-24 rounded-full border-4 border-white object-cover"
           />
         )}
       </div>
@@ -56,7 +57,7 @@ const Profile = ({ bio, actions: { download: { handleDownload, load }, }, parent
               <ListValue
                 key={item.label}
                 label={item.label}
-                value={item.value}
+                value={item.value  ?? '-'}
               />
             ))}
           </ul>

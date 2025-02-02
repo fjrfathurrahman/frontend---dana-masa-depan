@@ -11,13 +11,6 @@ const Search = () => {
 
   return (
     <main className="pt-14">
-      <button
-        className="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white"
-        onClick={() => window.history.back()}
-      >
-        {icons.back}
-      </button>
-
       <div>
         <h3 className="h2 mb-4">Cari Akun Anda di sini</h3>
         <p className="p">

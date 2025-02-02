@@ -22,7 +22,7 @@ const ModalTransaction = () => {
 
   const students = data?.data?.data;
 
-  const admin = JSON.parse(localStorage.getItem("user") || "{}");
+  const admin = JSON.parse(localStorage.getItem("admin") || "{}");
   const adminId = admin?.id;
 
   const onSubmit = (data: TTransactionSchema) => {
